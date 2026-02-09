@@ -3,19 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dohwaz | Artist</title>
+    <title>Dohwaz | Official</title>
     <style>
-        body { background-color: #000; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; font-family: 'serif'; }
-        h1 { font-size: 3rem; letter-spacing: 0.3em; margin: 0; font-weight: 300; }
-        .line { width: 40px; height: 1px; background-color: #555; margin: 25px 0; }
-        p { color: #888; font-size: 1rem; letter-spacing: 0.1em; }
-        .footer { position: absolute; bottom: 5vh; font-size: 0.7rem; color: #333; }
+        /* 배경색: 인스타 느낌의 다크 베이지 */
+        :root {
+            --bg-color: #1a1917; 
+            --text-main: #d9d2c5;
+            --text-dim: #8c8579;
+            --accent: #5e584f;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* 헤더: 제목 */
+        header {
+            padding: 60px 0 40px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            letter-spacing: 0.5em;
+            font-weight: 200;
+            margin: 0;
+            color: var(--text-main);
+        }
+
+        /* 메인 컨테이너 (왼쪽 메뉴 + 오른쪽 그리드) */
+        .container {
+            display: flex;
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        /* 왼쪽 사이드바 메뉴 */
+        nav {
+            width: 200px;
+            flex-shrink: 0;
+            text-align: left;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+        nav ul li {
+            margin-bottom: 25px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: var(--text-main);
+        }
+
+        /* 오른쪽 9구 그리드 */
+        .gallery {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-left: 40px;
+        }
+        .grid-item {
+            aspect-ratio: 1 / 1;
+            background-color: var(--accent);
+            opacity: 0.6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: var(--bg-color);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .grid-item:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        /* 푸터: 장르 정보 */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-dim);
+        }
+        .genres {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            line-height: 2;
+        }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            nav { width: 100%; text-align: center; margin-bottom: 40px; }
+            nav ul li { display: inline-block; margin: 0 10px; }
+            .gallery { margin-left: 0; }
+        }
     </style>
 </head>
 <body>
-    <h1>DOHWAZ</h1>
-    <div class="line"></div>
-    <p>일생의 단 한 번, 일상적인 단편들</p>
-    <div class="footer">© 2026 DOHWAZ. All rights reserved.</div>
+
+    <header>
+        <h1>DOHWAZ</h1>
+    </header>
+
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#">ALBUM</a></li>
+                <li><a href="#">GOODS</a></li>
+                <li><a href="#">LIVE</a></li>
+                <li><a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a></li>
+            </ul>
+        </nav>
+
+        <div class="gallery">
+            <div class="grid-item">01</div>
+            <div class="grid-item">02</div>
+            <div class="grid-item">03</div>
+            <div class="grid-item">04</div>
+            <div class="grid-item">05</div>
+            <div class="grid-item">06</div>
+            <div class="grid-item">07</div>
+            <div class="grid-item">08</div>
+            <div class="grid-item">09</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="genres">
+            EXPERIMENTAL ELECTRONIC / ART POP / ALTERNATIVE R&B
+        </div>
+        <p style="font-size: 0.6rem; margin-top: 20px; opacity: 0.5;">© 2026 DOHWAZ. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
