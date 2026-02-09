@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
+
     <style>
         :root {
             --bg-color: #f2ede4; 
@@ -22,7 +23,6 @@
             min-height: 100vh;
         }
 
-        /* 왼쪽 상단 현재 메뉴 표시 */
         #current-menu {
             position: fixed;
             top: 40px;
@@ -139,32 +139,26 @@
             </ul>
         </nav>
 
-        <div class="gallery" id="main-grid">
-            </div>
+        <div class="gallery" id="main-grid"></div>
     </div>
 
     <footer>
-        <div class="genres">EXPERIMENTAL ELECTRONIC / ART POP / ALTERNATIVE R&B</div>
+        <div class="genres">EXPERIMENTAL ELECTRONIC / ART POP</div>
     </footer>
 
     <script>
         function updateGrid(menuName) {
-            // 1. 왼쪽 상단 메뉴 이름 업데이트
             document.getElementById('current-menu').innerText = menuName;
-
-            // 2. 그리드 초기화 및 9개 칸 생성
             const grid = document.getElementById('main-grid');
             grid.innerHTML = ''; 
             
             for (let i = 1; i <= 9; i++) {
                 const item = document.createElement('div');
                 item.className = 'grid-item';
-                // 글씨는 넣지 않습니다. 빈 칸으로 유지.
                 grid.appendChild(item);
             }
         }
 
-        // 처음 접속했을 때 실행
         window.onload = function() {
             updateGrid('PREVIEW');
         };
