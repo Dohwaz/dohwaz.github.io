@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
     <style>
-        /* 배경색: 부드러운 밝은 베이지 (Warm Sand) */
         :root {
             --bg-color: #f2ede4; 
             --text-main: #2d2a26;
             --text-dim: #7d756d;
-            --accent: #d9d2c5;
+            --accent: #e5e0d8;
         }
 
         body {
@@ -21,10 +20,9 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            transition: background 0.5s ease;
         }
 
-        /* 현재 메뉴 제목 표시 (왼쪽 상단) */
+        /* 왼쪽 상단 현재 메뉴 이름 */
         #current-menu {
             position: fixed;
             top: 40px;
@@ -35,7 +33,6 @@
             text-transform: uppercase;
         }
 
-        /* 헤더: 제목 */
         header {
             padding: 80px 0 40px 0;
             text-align: center;
@@ -48,7 +45,6 @@
             cursor: pointer;
         }
 
-        /* 메인 컨테이너 */
         .container {
             display: flex;
             max-width: 1100px;
@@ -59,7 +55,6 @@
             flex-grow: 1;
         }
 
-        /* 왼쪽 사이드바 메뉴 */
         nav {
             width: 220px;
             flex-shrink: 0;
@@ -78,18 +73,17 @@
             font-size: 0.85rem;
             letter-spacing: 0.15em;
             transition: 0.3s;
+            cursor: pointer;
         }
         nav ul li a:hover {
             color: var(--text-main);
-            padding-left: 5px;
         }
 
-        /* 오른쪽 9구 그리드 */
         .gallery {
             flex-grow: 1;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
+            gap: 15px;
             margin-left: 60px;
         }
         .grid-item {
@@ -99,18 +93,15 @@
             align-items: center;
             justify-content: center;
             font-size: 0.7rem;
-            color: #fff;
-            transition: 0.5s ease;
+            color: var(--text-dim);
+            transition: 0.4s;
             cursor: pointer;
-            overflow: hidden;
-            border: 1px solid rgba(0,0,0,0.03);
+            border: 1px solid rgba(0,0,0,0.02);
         }
         .grid-item:hover {
-            filter: brightness(0.9);
-            transform: scale(1.02);
+            filter: brightness(0.95);
         }
 
-        /* 푸터: 장르 정보 */
         footer {
             text-align: center;
             padding: 80px 20px 40px;
@@ -122,60 +113,5 @@
             text-transform: uppercase;
         }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
-            #current-menu { display: none; }
-            .container { flex-direction: column; }
-            nav { width: 100%; text-align: center; margin-bottom: 50px; }
-            .gallery { margin-left: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <div id="current-menu">Overview</div>
-
-    <header>
-        <h1 onclick="location.reload()">DOHWAZ</h1>
-    </header>
-
-    <div class="container">
-        <nav>
-            <ul>
-                <li><a href="#" onclick="changeMenu('Album')">ALBUM</a></li>
-                <li><a href="#" onclick="changeMenu('Goods')">GOODS</a></li>
-                <li><a href="#" onclick="changeMenu('Live')">LIVE</a></li>
-                <li><a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a></li>
-                <li><a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a></li>
-                <li><a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a></li>
-            </ul>
-        </nav>
-
-        <div class="gallery">
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-            <div class="grid-item"></div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="genres">
-            EXPERIMENTAL ELECTRONIC / ART POP / ALTERNATIVE R&B
-        </div>
-    </footer>
-
-    <script>
-        function changeMenu(name) {
-            document.getElementById('current-menu').innerText = name;
-            // 여기서 나중에 각 메뉴 클릭 시 사진이 바뀌게 할 수 있습니다.
-        }
-    </script>
-
-</body>
-</html>
+            #current-menu
