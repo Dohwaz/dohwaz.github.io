@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
-
     <style>
         :root {
-            --bg-color: #f2ede4; 
-            --text-main: #2d2a26;
-            --text-dim: #7d756d;
-            --accent: #e5e0d8;
+            --bg-color: #B7AC9E; 
+            --text-main: #1a1918;
+            --text-dim: #4a4540;
+            --accent: #d2c9bd;
+            --copyright-color: rgba(26, 25, 24, 0.3); /* 희미한 카피라이트 색상 */
         }
 
         body {
@@ -23,15 +23,8 @@
             min-height: 100vh;
         }
 
-        #current-menu {
-            position: fixed;
-            top: 40px;
-            left: 40px;
-            font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            color: var(--text-dim);
-            text-transform: uppercase;
-        }
+        /* 왼쪽 상단 이름 삭제 (필요 시 주석 해제) */
+        #current-menu { display: none; }
 
         header {
             padding: 80px 0 40px 0;
@@ -40,12 +33,10 @@
         header h1 {
             font-size: 2.2rem;
             letter-spacing: 0.6em;
-            font-weight: 200;
+            font-weight: 300;
             margin: 0;
             cursor: pointer;
-            transition: 0.3s;
         }
-        header h1:hover { opacity: 0.6; }
 
         .container {
             display: flex;
@@ -55,15 +46,22 @@
             padding: 20px;
             box-sizing: border-box;
             flex-grow: 1;
+            position: relative;
         }
 
+        /* 왼쪽 메뉴 레이아웃 */
         nav {
             width: 200px;
             flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 위 메뉴와 아래 SNS 아이콘 분리 */
+            padding-bottom: 40px;
         }
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         nav ul li {
             margin-bottom: 22px;
@@ -76,92 +74,147 @@
             cursor: pointer;
             transition: 0.3s;
         }
-        nav ul li a:hover {
-            color: var(--text-main);
-            padding-left: 5px;
+        nav ul li a:hover { color: var(--text-main); }
+        /* 링크 해제된 메뉴 스타일 */
+        nav ul li span {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            opacity: 0.8;
         }
 
-        .gallery {
+        /* 왼쪽 하단 SNS 로고 아이콘들 */
+        .sidebar-sns {
+            display: flex;
+            gap: 12px;
+            margin-top: 50px;
+        }
+        .sns-icon-link {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-image: url('spiral_bg.jpg'); /* 소용돌이 배경 */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            filter: grayscale(100%) brightness(1.2); /* 화이트&투명 느낌을 위한 필터 */
+        }
+        .sns-icon-link img {
+            width: 18px;
+            height: auto;
+            opacity: 0.9;
+        }
+        .sns-icon-link:hover {
+            filter: none;
+            transform: scale(1.1);
+        }
+
+        /* 중앙 콘텐츠 영역 */
+        #content-area {
             flex-grow: 1;
+            margin-left: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 15px;
-            margin-left: 60px;
+            width: 100%;
         }
         .grid-item {
             aspect-ratio: 1 / 1;
             background-color: var(--accent);
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: 0.4s ease;
-            cursor: pointer;
-        }
-        .grid-item:hover {
-            filter: brightness(0.95);
-            transform: scale(1.01);
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         footer {
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 60px 20px;
         }
-        .genres {
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            color: var(--text-dim);
+        .copyright {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--copyright-color);
             text-transform: uppercase;
         }
 
         @media (max-width: 768px) {
-            #current-menu { display: none; }
             .container { flex-direction: column; }
-            nav { width: 100%; text-align: center; margin-bottom: 40px; }
-            .gallery { margin-left: 0; }
+            #content-area { margin-left: 0; margin-top: 40px; }
+            nav { width: 100%; text-align: center; align-items: center; }
+            .sidebar-sns { justify-content: center; margin-bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="current-menu">PREVIEW</div>
-
     <header>
-        <h1 onclick="updateGrid('PREVIEW')">DOHWAZ</h1>
+        <h1 onclick="showPreview()">DOHWAZ</h1>
     </header>
 
     <div class="container">
         <nav>
             <ul>
-                <li><a onclick="updateGrid('ALBUM')">ALBUM</a></li>
-                <li><a onclick="updateGrid('GOODS')">GOODS</a></li>
-                <li><a onclick="updateGrid('LIVE')">LIVE</a></li>
-                <li><a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a></li>
-                <li><a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a></li>
-                <li><a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a></li>
+                <li><a onclick="showGrid('ALBUM')">ALBUM</a></li>
+                <li><a onclick="showGrid('MERCH')">MERCH</a></li>
+                <li><a onclick="showGrid('LIVE')">LIVE</a></li>
+                <li><a onclick="showGrid('CONTACT')">CONTACT</a></li>
+                <li><span>SOUNDCLOUD</span></li>
+                <li><span>YOUTUBE</span></li>
+                <li><span>INSTAGRAM</span></li>
             </ul>
+
+            <div class="sidebar-sns">
+                <a href="https://www.youtube.com/@dohwaz" target="_blank" class="sns-icon-link">
+                    <img src="youtube_white.png" alt="YT">
+                </a>
+                <a href="https://soundcloud.com/dohwaz" target="_blank" class="sns-icon-link">
+                    <img src="soundcloud_white.png" alt="SC">
+                </a>
+                <a href="https://www.instagram.com/dohwaz/" target="_blank" class="sns-icon-link">
+                    <img src="insta_white.png" alt="IG">
+                </a>
+            </div>
         </nav>
 
-        <div class="gallery" id="main-grid"></div>
+        <div id="content-area">
+            </div>
     </div>
 
     <footer>
-        <div class="genres">EXPERIMENTAL ELECTRONIC / ART POP</div>
+        <div class="copyright">© DOHWAZ. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
-        function updateGrid(menuName) {
-            document.getElementById('current-menu').innerText = menuName;
-            const grid = document.getElementById('main-grid');
-            grid.innerHTML = ''; 
-            
-            for (let i = 1; i <= 9; i++) {
-                const item = document.createElement('div');
-                item.className = 'grid-item';
-                grid.appendChild(item);
-            }
+        const contentArea = document.getElementById('content-area');
+
+        function showPreview() {
+            contentArea.innerHTML = `<img src="flower_main.jpg" class="main-image">`;
         }
 
-        window.onload = function() {
-            updateGrid('PREVIEW');
-        };
+        function showGrid(menuName) {
+            let gridHtml = '<div class="gallery-grid">';
+            for (let i = 1; i <= 9; i++) {
+                gridHtml += `<div class="grid-item"></div>`;
+            }
+            gridHtml += '</div>';
+            contentArea.innerHTML = gridHtml;
+        }
+
+        window.onload = showPreview;
     </script>
 </body>
 </html>
