@@ -24,8 +24,6 @@
             min-height: 100vh;
         }
 
-        /* 왼쪽 상단 PREVIEW 텍스트 삭제됨 */
-
         header {
             padding: 80px 0 40px 0;
             text-align: center;
@@ -68,19 +66,17 @@
             letter-spacing: 0.15em;
             cursor: pointer;
             transition: 0.2s;
-            font-weight: 400; /* 기본 굵기 */
+            font-weight: 400;
         }
         
-        /* 마우스 호버 시 효과 */
         nav ul li a:hover {
             color: var(--text-main);
         }
 
-        /* 선택된 메뉴 스타일: 글씨가 진해지고 색상이 메인 컬러로 변경됨 */
         nav ul li a.active {
             color: var(--text-main);
-            font-weight: 500; /* 더 진하게 표시 */
-            letter-spacing: 0.5em; /* 진해질 때 자간 미세 조정 */
+            font-weight: 500;
+            letter-spacing: 0.5em;
         }
 
         .gallery {
@@ -106,6 +102,27 @@
             text-align: center;
             padding: 80px 20px 40px;
         }
+
+        /* SNS 링크 스타일 */
+        .social-links {
+            margin-bottom: 15px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+        }
+        .social-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            transition: 0.3s;
+            padding: 0 10px;
+        }
+        .social-links a:hover {
+            color: var(--text-main);
+        }
+        .social-links span {
+            color: var(--text-very-dim); /* 구분선은 더 연하게 */
+            font-weight: 100;
+        }
+
         .copyright {
             font-size: 0.65rem;
             letter-spacing: 0.15em;
@@ -140,16 +157,21 @@
     </div>
 
     <footer>
+        <div class="social-links">
+            <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a>
+            <span>|</span>
+            <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>
+            <span>|</span>
+            <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
+        </div>
         <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
         function updateGrid(menuName, element) {
-            // 모든 메뉴에서 'active' 클래스 제거
             const menus = document.querySelectorAll('#menu-list a');
             menus.forEach(menu => menu.classList.remove('active'));
             
-            // 클릭된 메뉴에 'active' 클래스 추가 (진하게 표시)
             if(element) {
                 element.classList.add('active');
             }
@@ -157,7 +179,6 @@
             const grid = document.getElementById('main-grid');
             grid.innerHTML = ''; 
             
-            // 각 메뉴에 맞는 아이템 생성 (예시로 9개 유지)
             for (let i = 1; i <= 9; i++) {
                 const item = document.createElement('div');
                 item.className = 'grid-item';
@@ -165,7 +186,6 @@
             }
         }
 
-        // 로고 클릭 시 초기 상태(PREVIEW 등)로 돌아가는 기능
         function handleLogoClick() {
             const menus = document.querySelectorAll('#menu-list a');
             menus.forEach(menu => menu.classList.remove('active'));
@@ -173,7 +193,6 @@
         }
 
         window.onload = function() {
-            // 초기 로드 시에는 아무 메뉴도 강조되지 않은 상태로 시작
             updateGrid('PREVIEW');
         };
     </script>
