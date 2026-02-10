@@ -37,7 +37,14 @@
             box-sizing: border-box; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 500px; 
         }
 
-        nav { position: absolute; left: 40px; top: 0; width: 150px; }
+        /* 📌 PC 메뉴 위치 설정: 이 부분을 밖으로 꺼냈습니다 */
+        nav { 
+            position: absolute; 
+            left: 40px; 
+            top: 250px; /* 사진 높이에 맞춰 조정 */
+            width: 150px; 
+            z-index: 15;
+        }
         nav ul { list-style: none; padding: 0; margin: 0; }
         nav ul li { margin-bottom: 22px; }
         nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; }
@@ -105,49 +112,26 @@
             margin: 0 0 20px 0;
         }
 
-       .profile-info p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--text-main);
-    letter-spacing: 0.01em;
-    
-    /* 여기서부터가 핵심: 오른쪽 끝 맞추기 마법 */
-    text-align: justify;       /* 양쪽 정렬로 끝을 맞춤 */
-    text-justify: inter-word;  /* 단어 사이 간격을 조절해서 맞춤 */
-    word-break: break-word;    /* 긴 단어가 있으면 줄바꿈 허용 */
-    hyphens: auto;             /* 필요시 단어 사이에 하이픈(-)을 넣어 끝라인 맞춤 */
-    
-    margin: 0;
-}
-        /* 볼드체(strong) 부분에 검붉은색 포인트 컬러 적용 */
-.profile-info strong {
-    color: var(--point-color); /* #8b3a2b 색상 적용 */
-    font-weight: 600;          /* 조금 더 두껍게 강조 */
-}
+        .profile-info p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-main);
+            letter-spacing: 0.01em;
+            text-align: justify;
+            text-justify: inter-word;
+            word-break: break-word;
+            hyphens: auto;
+            margin: 0;
+        }
 
-/* 모바일에서도 사진과 글이 화면 중앙에 오게 유지 */
-@media (max-width: 950px) {
-    .profile-wrapper { 
-        flex-direction: column; 
-        align-items: center; 
-        padding: 0 20px;
-    }
-    
-    .profile-info {
-        width: 100%;
-        max-width: 320px; /* 사진 너비와 맞춰서 정갈하게 */
-    }
-    nav { 
-    position: absolute; 
-    left: 40px; 
-    top: 280px; 
-    width: 150px; 
-    z-index: 10;
-}   
+        .profile-info strong {
+            color: var(--point-color);
+            font-weight: 600;
+        }
+
+        /* 📌 모바일 대응: 여기서는 다시 위로 올림 */
         @media (max-width: 1150px) {
             header { padding: 40px 0 20px; }
-            
-            /* 모바일에서는 메뉴 위치를 다시 원래대로(중앙) 돌림 */
             nav { 
                 position: relative; 
                 top: 0; 
@@ -156,10 +140,10 @@
                 text-align: center; 
                 margin-bottom: 50px; 
             }
-            
-            nav ul li { display: block; margin-bottom: 20px; }
+            nav ul li { display: inline-block; margin: 0 15px; }
             .container { flex-direction: column; min-height: auto; }
             #content-area { padding: 0; min-height: 500px; }
+            .profile-wrapper { flex-direction: column; text-align: center; gap: 30px; }
             .form-row { flex-direction: column; gap: 25px; }
         }
     </style>
@@ -196,29 +180,26 @@
     </footer>
 
     <script>
-        // 1. 콘텐츠 설정 객체: 여기서 문구를 수정하면 모든 곳에 반영됩니다.
       const CONTENT_CONFIG = {
             'ALBUM': '<div class="album-notice">Upcoming Debut Single<br>June 2026</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
-         'DEFAULT': `
-    <div class="profile-wrapper">
-        <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
-        <div class="profile-info">
-            <h2>Dohwaz</h2>
-            <p>
-                Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>. Drawing inspiration from the fluid nature of canvas and sound, she</strong translates complex emotions into sonic textures that challenge the conventional. While she is currently mastering the delicate art of "balancing part-time survival with sonic creation" to fund the dream, she is set to take her debut stage across <strong>Berlin</strong> and <strong>London</strong>. The grand journey begins in <strong>June 2026.<strong>
-            </p>
-        </div>
-    </div>
-`
+            'DEFAULT': `
+                <div class="profile-wrapper">
+                    <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
+                    <div class="profile-info">
+                        <h2>Dohwaz</h2>
+                        <p>
+                            Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>. Drawing inspiration from the fluid nature of canvas and sound, <strong>she</strong> translates complex emotions into sonic textures that challenge the conventional. While she is currently mastering the delicate art of "balancing part-time survival with sonic creation" to fund the dream, she is set to take her debut stage across <strong>Berlin</strong> and <strong>London</strong>. The grand journey begins in <strong>June 2026.</strong>
+                        </p>
+                    </div>
+                </div>
+            `
         };
 
         function updateGrid(menuName) {
-            // URL 업데이트
             const newURL = `${window.location.pathname}?page=${menuName}`;
             window.history.pushState({path: newURL}, '', newURL);
 
-            // 메뉴 활성화 스타일 변경
             document.querySelectorAll('#menu-list a').forEach(menu => {
                 menu.classList.toggle('active', menu.innerText === menuName);
             });
@@ -228,7 +209,6 @@
             if (menuName === 'CONTACT') {
                 renderContactForm(grid);
             } else {
-                // 콘텐츠 결정 로직 최적화
                 let html = CONTENT_CONFIG['DEFAULT'];
                 if (menuName === 'ALBUM') html = CONTENT_CONFIG['ALBUM'];
                 else if (['MERCH', 'LIVE', 'EVENTS'].includes(menuName)) html = CONTENT_CONFIG['COMING_SOON'];
