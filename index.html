@@ -255,13 +255,16 @@
                         </div>
                         <button type="button" class="submit-btn" onclick="validateForm()">SUBMIT</button>
                     </form>`;
-            } else if (menuName === 'ALBUM') {
+      } else if (menuName === 'ALBUM') {
                 grid.innerHTML = '<div class="album-notice">2026 June Single<br>Debut Soon</div>';
+            } else if (menuName === 'MERCH' || menuName === 'LIVE' || menuName === 'EVENTS') {
+                // Queen의 요청: MERCH, LIVE, EVENTS 모두 COMING SOON으로 통일
+                grid.innerHTML = '<div class="album-notice">COMING SOON</div>';
             } else {
-                grid.innerHTML = '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; width:100%; max-width:850px;">' + 
-                    Array(9).fill('<div style="aspect-ratio:1/1; background-color:var(--accent);"></div>').join('') + '</div>';
+                // 초기 화면이나 기타 메뉴
+                grid.innerHTML = '<div class="album-notice">DOHWAZ<br>OFFICIAL</div>';
             }
-        }
+        } // updateGrid 함수가 여기서 끝납니다.
 
         function validateForm() {
             const form = document.getElementById('mail-form');
