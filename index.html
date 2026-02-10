@@ -8,6 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block" rel="stylesheet">
+    
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // Queen이 알려주신 공개 키 적용
+            emailjs.init("noI6vApUfz1edbWge"); 
+        })();
+    </script>
+
     <style>
         :root {
             --bg-color: #f2ede4; 
@@ -31,7 +40,6 @@
 
         header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
         
-        /* 로고 영역: Queen의 요청대로 호버 시 색상 변화 완전 삭제 */
         .logo-wrapper {
             display: inline-flex;
             flex-direction: column;
@@ -114,10 +122,7 @@
             padding: 20px; font-size: 0.8rem; letter-spacing: 0.3em; cursor: pointer; 
             transition: 0.4s; margin-top: 40px; width: 100%; font-weight: 500; 
         }
-        .submit-btn:hover { 
-            background: var(--point-color); 
-            letter-spacing: 0.4em; 
-        }
+        .submit-btn:hover { background: var(--point-color); letter-spacing: 0.4em; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
@@ -127,7 +132,6 @@
         .social-links a:hover { color: var(--text-main); }
         .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-        /* 반응형: 메뉴 겹침 방지 (900px 기준) */
         @media (max-width: 900px) {
             header { padding: 40px 0 20px 0; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
@@ -183,31 +187,31 @@
 
             if (menuName === 'CONTACT') {
                 grid.innerHTML = `
-                    <div class="contact-form">
+                    <form id="contact-form" class="contact-form">
                         <div class="form-row">
-                            <div class="form-group"><label>Name</label><input type="text" data-label="Name" placeholder="성함"></div>
-                            <div class="form-group"><label>Email</label><input type="email" data-label="Email" placeholder="이메일 주소"></div>
+                            <div class="form-group"><label>Name</label><input type="text" name="name" data-label="Name" placeholder="성함"></div>
+                            <div class="form-group"><label>Email</label><input type="email" name="email" data-label="Email" placeholder="이메일 주소"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Phone</label><input type="text" data-label="Phone" placeholder="연락처"></div>
-                            <div class="form-group"><label>Company</label><input type="text" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)"></div>
+                            <div class="form-group"><label>Phone</label><input type="text" name="phone" data-label="Phone" placeholder="연락처"></div>
+                            <div class="form-group"><label>Company</label><input type="text" name="company" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Event Date</label><input type="text" data-label="Event Date" placeholder="예상 날짜"></div>
-                            <div class="form-group"><label>Event Location</label><input type="text" data-label="Event Location" placeholder="진행 장소"></div>
+                            <div class="form-group"><label>Event Date</label><input type="text" name="date" data-label="Event Date" placeholder="예상 날짜"></div>
+                            <div class="form-group"><label>Event Location</label><input type="text" name="location" data-label="Event Location" placeholder="진행 장소"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Type of Event</label><input type="text" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
-                            <div class="form-group"><label>Performance Duration</label><input type="text" data-label="Performance Duration" placeholder="공연 예상 시간"></div>
+                            <div class="form-group"><label>Type of Event</label><input type="text" name="type" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
+                            <div class="form-group"><label>Performance Duration</label><input type="text" name="duration" data-label="Performance Duration" placeholder="공연 예상 시간"></div>
                         </div>
-                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" data-label="Budget Range" placeholder="예산 범위"></div>
-                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex. 특정 노래, 테마)"></textarea></div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예산 범위"></div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex. 특정 노래, 테마)"></textarea></div>
                         <div class="form-group">
                             <label>Additional Details</label>
-                            <textarea data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
+                            <textarea name="details" data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
                         </div>
-                        <button class="submit-btn" onclick="validateForm()">SUBMIT</button>
-                    </div>`;
+                        <button type="button" class="submit-btn" onclick="validateAndSend()">SUBMIT</button>
+                    </form>`;
             } else if (menuName === 'ALBUM') {
                 grid.innerHTML = '<div class="album-notice">2026 June Single<br>Debut Soon</div>';
             } else {
@@ -216,18 +220,30 @@
             }
         }
 
-        function validateForm() {
-            const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+        // [추가 및 수정] 검증 후 이메일 발송 기능
+        function validateAndSend() {
+            const form = document.getElementById('contact-form');
+            const inputs = form.querySelectorAll('input, textarea');
+            
+            // 필수 값 체크 (성함과 이메일은 필수)
             for (let input of inputs) {
-                if (input.value.trim() === "") {
+                if (input.value.trim() === "" && (input.name === "name" || input.name === "email")) {
                     const labelName = input.getAttribute('data-label');
                     alert(labelName + " 항목을 작성해 주세요.");
                     input.focus();
                     return;
                 }
             }
-            alert("Thank you. Your request has been sent.");
-            location.reload(); 
+
+            // [발송] Queen의 EmailJS 계정으로 전송
+            // 'service_gmail'은 기본값이니 EmailJS 관리자 페이지의 Service ID와 대조해 보세요.
+            emailjs.sendForm('Dohwaz's Offical Mail', 'template_122vwoa', '#contact-form')
+                .then(function() {
+                    alert("Thank you. Your request has been sent to Queen.");
+                    location.reload();
+                }, function(error) {
+                    alert("FAILED... " + JSON.stringify(error));
+                });
         }
 
         function handleLogoClick() { updateGrid('PREVIEW'); }
