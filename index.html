@@ -105,11 +105,17 @@
             margin: 0 0 20px 0;
         }
 
-        .profile-info p {
-            font-size: 1rem;
-            line-height: 1.9;
+       .profile-info p {
+            font-size: 0.95rem;
+            line-height: 2; /* 영어 문장의 가독성을 위해 살짝 늘렸습니다 */
             color: var(--text-main);
-            word-break: keep-all;
+            letter-spacing: 0.03em;
+            word-break: normal;
+        }
+        
+        .profile-info strong {
+            color: var(--point-color);
+            font-weight: 500;
         }
 
         /* 화면이 작아질 때를 위한 설정 */
