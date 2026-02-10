@@ -14,6 +14,7 @@
             --text-very-dim: #b8b1a9;
             --accent: #e5e0d8;
             --point-color: #8b3a2b; /* 붉은 갈색 */
+            --dark-brown: #3d2b1f;  /* 흑갈색 추가 */
         }
 
         body {
@@ -23,7 +24,7 @@
             font-family: 'Apple SD Gothic Neo', sans-serif;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* 화면 전체 높이 유지 */
+            min-height: 100vh;
         }
 
         header {
@@ -32,18 +33,24 @@
             z-index: 10;
         }
 
-        /* DOHWAZ 로고 서체 수정 */
+        /* DOHWAZ 로고: 항상 흑갈색 유지 */
         header h1 {
-            font-family: 'Great Vibes', cursive; /* 필기체 적용 */
-            font-size: 3.5rem; /* 필기체는 보통 작게 보이므로 크기 키움 */
-            letter-spacing: 0.1em; /* 필기체는 자간이 좁아야 예쁨 */
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            letter-spacing: 0.1em;
             font-weight: 400;
             margin: 0;
             cursor: pointer;
-            transition: 0.3s;
-            text-transform: none; /* 필기체는 대소문자 혼합이 우아함 */
+            color: var(--dark-brown); /* 검정 대신 흑갈색 적용 */
+            transition: opacity 0.3s ease;
+            text-transform: none;
+            -webkit-tap-highlight-color: transparent; /* 모바일 터치 시 파란 박스 제거 */
         }
-        header h1:hover { opacity: 0.6; }
+        
+        /* 모바일에서 상태가 남지 않도록 opacity만 조절 */
+        header h1:hover { 
+            opacity: 0.6; 
+        }
 
         .container {
             position: relative;
@@ -56,7 +63,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 500px; /* 모바일에서 페이지가 너무 짧아지지 않게 고정 */
+            min-height: 500px;
         }
 
         nav {
@@ -94,7 +101,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 400px; /* 앨범 뷰에서도 일정 높이 유지 */
+            min-height: 400px;
         }
 
         .gallery {
@@ -132,7 +139,7 @@
             text-align: center;
             padding: 80px 20px 40px;
             z-index: 10;
-            margin-top: auto; /* 푸터를 항상 바닥으로 */
+            margin-top: auto;
         }
 
         .social-links {
@@ -158,7 +165,7 @@
 
         @media (max-width: 768px) {
             header { padding: 40px 0 20px 0; }
-            header h1 { font-size: 2.8rem; }
+            header h1 { font-size: 2.8rem; } /* 모바일에서 로고 크기 살짝 조정 */
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
             .container { flex-direction: column; min-height: auto; }
             #content-area { min-height: 300px; }
