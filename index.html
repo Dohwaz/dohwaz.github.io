@@ -129,10 +129,10 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     color: var(--text-main);
     letter-spacing: 0.01em;
     
-    /* 핵심 설정: 화면이 좁아져도 글자 사이를 골고루 벌려줍니다 */
-    text-align: justify;
-    text-justify: inter-character; 
-    word-break: break-all;
+    /* 줄을 맞추는 핵심 3인방 */
+    text-align: justify;           /* 양쪽 끝 맞추기 */
+    text-justify: inter-character;  /* 글자 사이 간격을 조절 (공백 폭발 방지) */
+    word-break: break-all;         /* 단어가 길어도 줄 끝에서 무조건 자르기 */
     
     margin: 0;
 }
