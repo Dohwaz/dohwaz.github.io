@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     
     <style>
         :root {
@@ -33,31 +32,34 @@
 
         header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
         
-        /* 로고 영역: 장미 아이콘 + 텍스트 */
+        /* 로고 영역: 마우스 이벤트 및 투명도 변화 완전 삭제 */
         .logo-wrapper {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
+            display: inline-block;
             cursor: pointer;
-            transition: 0.3s;
+            text-decoration: none;
+            transition: none !important; /* 애니메이션 삭제 */
         }
-        .logo-wrapper:hover { opacity: 0.7; }
         
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--dark-brown);
-            margin-bottom: 10px;
+        /* 마우스 올려도 절대 안 변하게 고정 */
+        .logo-wrapper:hover { 
+            opacity: 1 !important; 
         }
 
         header h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-size: 3.5rem; /* Queen의 로고 위엄을 위해 살짝 키웠습니다 */
             letter-spacing: 0.1em;
             font-weight: 400;
             margin: 0;
-            color: var(--dark-brown) !important;
+            color: var(--dark-brown) !important; /* 흑갈색 고정 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            transition: none !important;
+        }
+
+        /* 호버 시에도 색상 유지 강제 설정 */
+        .logo-wrapper:hover h1 {
+            color: var(--dark-brown) !important;
         }
 
         .container { 
@@ -70,7 +72,7 @@
             flex-grow: 1; 
             display: flex; 
             justify-content: center; 
-            align-items: center; /* 세로 중앙 정렬 */
+            align-items: center; 
             min-height: 500px; 
         }
 
@@ -147,7 +149,6 @@
 
     <header>
         <div class="logo-wrapper" onclick="handleLogoClick()">
-            <i class="fi fi-ts-rose-alt logo-icon"></i>
             <h1>Dohwaz</h1>
         </div>
     </header>
@@ -200,20 +201,6 @@
                             <div class="form-group"><label>Phone</label><input type="text" data-label="Phone" placeholder="연락처"></div>
                             <div class="form-group"><label>Company</label><input type="text" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)"></div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>Event Date</label><input type="text" data-label="Event Date" placeholder="예상 날짜"></div>
-                            <div class="form-group"><label>Event Location</label><input type="text" data-label="Event Location" placeholder="진행 장소"></div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group"><label>Type of Event</label><input type="text" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
-                            <div class="form-group"><label>Performance Duration</label><input type="text" data-label="Performance Duration" placeholder="공연 예상 시간"></div>
-                        </div>
-                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" data-label="Budget Range" placeholder="예산 범위"></div>
-                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex. 특정 노래, 테마)"></textarea></div>
-                        <div class="form-group">
-                            <label>Additional Details</label>
-                            <textarea data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
-                        </div>
                         <button class="submit-btn" onclick="validateForm()">SUBMIT</button>
                     </div>`;
             } else if (menuName === 'ALBUM') {
@@ -225,15 +212,6 @@
         }
 
         function validateForm() {
-            const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
-            for (let input of inputs) {
-                if (input.value.trim() === "") {
-                    const labelName = input.getAttribute('data-label');
-                    alert(labelName + " 항목을 작성해 주세요.");
-                    input.focus();
-                    return;
-                }
-            }
             alert("Thank you. Your request has been sent.");
             location.reload(); 
         }
