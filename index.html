@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
-
     <style>
         :root {
             --bg-color: #f2ede4; 
@@ -12,7 +11,7 @@
             --text-dim: #7d756d;
             --text-very-dim: #b8b1a9;
             --accent: #e5e0d8;
-            --point-color: #8b3a2b; /* 붉은 갈색 추가 */
+            --point-color: #8b3a2b; /* 붉은 갈색 */
         }
 
         body {
@@ -28,6 +27,7 @@
         header {
             padding: 80px 0 40px 0;
             text-align: center;
+            z-index: 10;
         }
         header h1 {
             font-size: 2.2rem;
@@ -39,23 +39,31 @@
         }
         header h1:hover { opacity: 0.6; }
 
+        /* 전체 컨테이너를 상대 위치로 설정 */
         .container {
-            display: flex;
-            max-width: 1100px;
+            position: relative;
+            max-width: 1200px;
             margin: 0 auto;
             width: 100%;
             padding: 20px;
             box-sizing: border-box;
             flex-grow: 1;
+            display: flex;
+            justify-content: center; /* 콘텐츠 중앙 정렬 */
+            align-items: center;
         }
 
+        /* 메뉴를 왼쪽 고정 위치로 이동시켜 중앙 정렬에 영향을 주지 않게 함 */
         nav {
-            width: 200px;
-            flex-shrink: 0;
+            position: absolute;
+            left: 40px;
+            top: 20px;
+            width: 150px;
         }
         nav ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
         nav ul li {
             margin-bottom: 22px;
@@ -70,9 +78,7 @@
             font-weight: 400;
         }
         
-        nav ul li a:hover {
-            color: var(--text-main);
-        }
+        nav ul li a:hover { color: var(--text-main); }
 
         nav ul li a.active {
             color: var(--text-main);
@@ -80,13 +86,13 @@
             letter-spacing: 0.5em;
         }
 
-        /* 메인 콘텐츠 영역 (그리드 혹은 텍스트가 들어갈 곳) */
+        /* 메인 콘텐츠 영역: 화면 중앙에 위치함 */
         #content-area {
-            flex-grow: 1;
-            margin-left: 60px;
+            width: 100%;
+            max-width: 800px; /* 그리드의 최대 너비 제한 */
             display: flex;
-            justify-content: center; /* 가로 중앙 */
-            align-items: center;     /* 세로 중앙 */
+            justify-content: center;
+            align-items: center;
         }
 
         .gallery {
@@ -96,7 +102,6 @@
             width: 100%;
         }
 
-        /* 앨범 데뷔 문구 스타일 */
         .album-notice {
             color: var(--point-color);
             font-size: 1.8rem;
@@ -119,10 +124,12 @@
             transition: 0.4s ease;
             cursor: pointer;
         }
+        .grid-item:hover { filter: brightness(0.95); transform: scale(1.01); }
 
         footer {
             text-align: center;
             padding: 80px 20px 40px;
+            z-index: 10;
         }
 
         .social-links {
@@ -146,10 +153,11 @@
             text-transform: uppercase;
         }
 
+        /* 모바일 대응 */
         @media (max-width: 768px) {
+            nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
             .container { flex-direction: column; }
-            nav { width: 100%; text-align: center; margin-bottom: 40px; }
-            #content-area { margin-left: 0; min-height: 300px; }
+            #content-area { max-width: 100%; }
         }
     </style>
 </head>
@@ -198,14 +206,12 @@
             grid.innerHTML = ''; 
 
             if (menuName === 'ALBUM') {
-                // ALBUM 클릭 시 문구 표시
                 const notice = document.createElement('div');
                 notice.className = 'album-notice';
                 notice.innerHTML = "2026 June Single<br>Debut Soon";
                 grid.appendChild(notice);
-                grid.style.display = 'block'; // 그리드 레이아웃 대신 블록으로 변경해 중앙 배치 유도
+                grid.style.display = 'block';
             } else {
-                // 다른 메뉴 클릭 시 기존 그리드 유지 (MERCH, LIVE 등)
                 grid.style.display = 'grid';
                 for (let i = 1; i <= 9; i++) {
                     const item = document.createElement('div');
