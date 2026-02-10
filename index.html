@@ -36,7 +36,10 @@ body {
         p {
     text-align: justify;
     word-break: break-all;
-    text-justify: inter-character;
+    /* 글자 사이의 간격을 미세하게 조정해서 공백 폭발을 막아줍니다 */
+    text-justify: inter-character; 
+    /* 한국어와 영어가 섞여 있을 때 줄바꿈을 더 자연스럽게 해줍니다 */
+    overflow-wrap: break-word;
 }
         
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
