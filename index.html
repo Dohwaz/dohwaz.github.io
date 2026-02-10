@@ -283,23 +283,6 @@ document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 }, false);
         
-        const audio = document.getElementById('bgm');
-audio.volume = 0.3;
-
-document.addEventListener('click', function(e) {
-    if (audio.paused) {
-        audio.play().catch(error => console.log("재생 오류:", error));
-    } else {
-        audio.pause();
-    }
-}, { once: false }); // 화면 클릭할 때마다 껐다 켰다 할 수 있게 설정
-        
     </script>
-
-           <audio id="bgm" loop preload="auto">
-    <source src="bgm.mp3?v=1" type="audio/mpeg">
-    <source src="bgm.mp3" type="audio/mp3">
-</audio>
-
 </body>
 </html>
