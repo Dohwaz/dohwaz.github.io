@@ -8,8 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-straight/css/uicons-thin-straight.css'>
-    
     <style>
         :root {
             --bg-color: #f2ede4; 
@@ -33,21 +31,15 @@
 
         header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
         
-        /* 로고 영역: 장미 아이콘 + 텍스트 */
+        /* 로고 영역: Queen의 요청대로 호버 시 색상 변화 완전 삭제 */
         .logo-wrapper {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: none; 
         }
-        .logo-wrapper:hover { opacity: 0.7; }
-        
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--dark-brown);
-            margin-bottom: 10px;
-        }
+        .logo-wrapper:hover { opacity: 1; } 
 
         header h1 {
             font-family: 'Great Vibes', cursive;
@@ -70,7 +62,7 @@
             flex-grow: 1; 
             display: flex; 
             justify-content: center; 
-            align-items: center; /* 세로 중앙 정렬 */
+            align-items: center; 
             min-height: 500px; 
         }
 
@@ -135,7 +127,8 @@
         .social-links a:hover { color: var(--text-main); }
         .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-        @media (max-width: 768px) {
+        /* 반응형: 메뉴 겹침 방지 (900px 기준) */
+        @media (max-width: 900px) {
             header { padding: 40px 0 20px 0; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
             .container { flex-direction: column; align-items: center; min-height: auto; }
@@ -147,7 +140,6 @@
 
     <header>
         <div class="logo-wrapper" onclick="handleLogoClick()">
-            <i class="fi fi-ts-rose-alt logo-icon"></i>
             <h1>Dohwaz</h1>
         </div>
     </header>
