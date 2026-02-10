@@ -31,7 +31,6 @@
         }
 
         header { padding: 80px 0 40px 0; text-align: center; z-index: 10; }
-
         header h1 {
             font-family: 'Great Vibes', cursive;
             font-size: 3.5rem;
@@ -40,7 +39,6 @@
             margin: 0;
             cursor: pointer;
             color: var(--dark-brown) !important;
-            text-transform: none;
             visibility: hidden;
             opacity: 0;
             user-select: none;
@@ -53,9 +51,23 @@
             transition: opacity 0.5s ease;
         }
 
-        header h1:hover { color: var(--dark-brown) !important; opacity: 1 !important; }
+        /* 메인 컨테이너 */
+        .container { 
+            position: relative; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            width: 100%; 
+            padding: 20px; 
+            box-sizing: border-box; 
+            flex-grow: 1; 
+            display: flex; 
+            /* 내부 요소 정렬을 위한 설정 */
+            justify-content: center; 
+            align-items: flex-start; 
+            min-height: 600px;
+        }
 
-        .container { position: relative; max-width: 1200px; margin: 0 auto; width: 100%; padding: 20px; box-sizing: border-box; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 500px; }
+        /* 네비게이션 - 왼쪽 고정 */
         nav { position: absolute; left: 40px; top: 20px; width: 150px; }
         nav ul { list-style: none; padding: 0; margin: 0; }
         nav ul li { margin-bottom: 22px; }
@@ -63,23 +75,41 @@
         nav ul li a:hover { color: var(--text-main); }
         nav ul li a.active { color: var(--text-main); font-weight: 500; letter-spacing: 0.5em; }
 
-        #content-area { width: 100%; max-width: 800px; display: flex; justify-content: center; align-items: flex-start; min-height: 400px; padding: 40px 0; }
-        .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; }
+        /* 콘텐츠 영역 */
+        #content-area { 
+            width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px 0 80px 0;
+        }
+        
+        /* 목록(Grid) 스타일 - 왼쪽 정렬 느낌 유지 */
+        .gallery-wrapper {
+            width: 100%;
+            max-width: 850px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-left: 100px; /* nav 공간 확보를 위해 살짝 밈 */
+        }
 
-        .album-notice { color: var(--point-color); font-size: 1.8rem; letter-spacing: 0.2em; line-height: 1.6; text-align: center; font-weight: 350; animation: fadeIn 2s ease; width: 100%; margin-top: 100px; }
+        /* CONTACT 폼 스타일 - 화면 정가운데 배치 */
+        .contact-form { 
+            width: 100%; 
+            max-width: 600px; 
+            animation: fadeIn 1.2s ease; 
+            margin: 0 auto; /* 가로 중앙 정렬 핵심 */
+        }
 
-        /* CONTACT 풀 버전 스타일 */
-        .contact-form { width: 100%; max-width: 700px; animation: fadeIn 1.2s ease; margin-bottom: 80px; }
         .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
         .form-group { flex: 1; display: flex; flex-direction: column; }
         .form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
         .form-group input, .form-group textarea { 
             background: transparent; border: none; border-bottom: 1px solid var(--text-very-dim); 
-            padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; 
-            outline: none; transition: border-color 0.3s; 
+            padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; 
         }
         .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
-        .form-group textarea { min-height: 80px; resize: vertical; }
+        .form-group textarea { min-height: 60px; resize: vertical; }
         
         .submit-btn { 
             background: var(--dark-brown); color: var(--bg-color); border: none; 
@@ -89,26 +119,28 @@
         .submit-btn:hover { background: var(--text-main); letter-spacing: 0.4em; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .grid-item { aspect-ratio: 1 / 1; background-color: var(--accent); border: 1px solid rgba(0,0,0,0.03); transition: 0.4s ease; cursor: pointer; }
+        
         footer { text-align: center; padding: 80px 20px 40px; z-index: 10; margin-top: auto; }
         .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; }
         .social-links a { text-decoration: none; color: var(--text-dim); transition: 0.3s; padding: 0 10px; }
         .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
+        @media (max-width: 1024px) {
+            .gallery-wrapper { margin-left: 0; }
+        }
+
         @media (max-width: 768px) {
             header { padding: 40px 0 20px 0; }
-            header h1 { font-size: 2.8rem; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
-            .container { flex-direction: column; min-height: auto; }
+            .container { flex-direction: column; align-items: center; }
             .form-row { flex-direction: column; gap: 25px; }
+            .gallery-wrapper { margin-left: 0; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1 onclick="handleLogoClick()">Dohwaz</h1>
-    </header>
+    <header><h1 onclick="handleLogoClick()">Dohwaz</h1></header>
 
     <div class="container">
         <nav>
@@ -119,24 +151,22 @@
                 <li><a onclick="updateGrid('CONTACT', this)">CONTACT</a></li>
             </ul>
         </nav>
-        <div id="content-area"><div class="gallery" id="main-grid"></div></div>
+        <div id="content-area">
+            <div id="main-grid" style="width: 100%;"></div>
+        </div>
     </div>
 
     <footer>
         <div class="social-links">
-            <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a>
-            <span>|</span>
-            <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>
-            <span>|</span>
+            <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a><span>|</span>
+            <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a><span>|</span>
             <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
         </div>
         <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
-        document.fonts.ready.then(function() {
-            document.documentElement.classList.add('fonts-loaded');
-        });
+        document.fonts.ready.then(function() { document.documentElement.classList.add('fonts-loaded'); });
 
         function updateGrid(menuName, element) {
             const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + menuName;
@@ -151,54 +181,57 @@
             const grid = document.getElementById('main-grid');
             grid.innerHTML = ''; 
 
-            if (menuName === 'ALBUM') {
-                const notice = document.createElement('div');
-                notice.className = 'album-notice';
-                notice.innerHTML = "2026 June Single<br>Debut Soon";
-                grid.appendChild(notice);
-                grid.style.display = 'block';
-            } else if (menuName === 'CONTACT') {
-                grid.style.display = 'block';
+            if (menuName === 'CONTACT') {
+                // 폼만 정중앙에 오도록 별도 래퍼 없이 배치
                 grid.innerHTML = `
                     <div class="contact-form">
                         <div class="form-row">
-                            <div class="form-group"><label>Name</label><input type="text" placeholder="성함"></div>
-                            <div class="form-group"><label>Email</label><input type="email" placeholder="이메일 주소"></div>
+                            <div class="form-group"><label>Name</label><input type="text" data-label="Name" placeholder="성함"></div>
+                            <div class="form-group"><label>Email</label><input type="email" data-label="Email" placeholder="이메일 주소"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Phone</label><input type="text" placeholder="연락처"></div>
-                            <div class="form-group"><label>Company</label><input type="text" placeholder="소속 (개인일 경우 생략 가능)"></div>
+                            <div class="form-group"><label>Phone</label><input type="text" data-label="Phone" placeholder="연락처"></div>
+                            <div class="form-group"><label>Company</label><input type="text" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Event Date</label><input type="text" placeholder="예상 날짜"></div>
-                            <div class="form-group"><label>Event Location</label><input type="text" placeholder="진행 장소"></div>
+                            <div class="form-group"><label>Event Date</label><input type="text" data-label="Event Date" placeholder="예상 날짜"></div>
+                            <div class="form-group"><label>Event Location</label><input type="text" data-label="Event Location" placeholder="진행 장소"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>Type of Event</label><input type="text" placeholder="공연 / 인터뷰 / 협업 등"></div>
-                            <div class="form-group"><label>Performance Duration</label><input type="text" placeholder="공연 예상 시간"></div>
+                            <div class="form-group"><label>Type of Event</label><input type="text" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
+                            <div class="form-group"><label>Performance Duration</label><input type="text" data-label="Performance Duration" placeholder="공연 예상 시간"></div>
                         </div>
-                        <div class="form-group" style="margin-bottom:25px;">
-                            <label>Budget Range</label>
-                            <input type="text" placeholder="예산 범위">
-                        </div>
-                        <div class="form-group" style="margin-bottom:25px;">
-                            <label>Special Requests</label>
-                            <textarea placeholder="특정 요청곡이나 테마 등 관련 상세 요청 사항을 적어주세요."></textarea>
-                        </div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" data-label="Budget Range" placeholder="예산 범위"></div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex. 특정 노래, 테마)"></textarea></div>
                         <div class="form-group">
                             <label>Additional Details</label>
-                            <textarea placeholder="그 외 프로젝트와 관련된 추가 정보를 자유롭게 적어주세요."></textarea>
+                            <textarea data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
                         </div>
-                        <button class="submit-btn" onclick="alert('Thank you. Your request has been sent.')">SUBMIT</button>
+                        <button class="submit-btn" onclick="validateForm()">SUBMIT</button>
                     </div>`;
+            } else if (menuName === 'ALBUM') {
+                grid.innerHTML = '<div class="album-notice" style="text-align:center; width:100%;">2026 June Single<br>Debut Soon</div>';
             } else {
-                grid.style.display = 'grid';
-                for (let i = 1; i <= 9; i++) {
-                    const item = document.createElement('div');
-                    item.className = 'grid-item';
-                    grid.appendChild(item);
+                // 목록(Grid)은 기존의 정렬 유지
+                const gallery = document.createElement('div');
+                gallery.className = 'gallery-wrapper';
+                gallery.innerHTML = Array(9).fill('<div style="aspect-ratio:1/1; background-color:var(--accent);"></div>').join('');
+                grid.appendChild(gallery);
+            }
+        }
+
+        function validateForm() {
+            const inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+            for (let input of inputs) {
+                if (input.value.trim() === "") {
+                    const labelName = input.getAttribute('data-label');
+                    alert(labelName + " 항목을 작성해 주세요.");
+                    input.focus();
+                    return;
                 }
             }
+            alert("Thank you. Your request has been sent.");
+            location.reload(); 
         }
 
         function handleLogoClick() { updateGrid('PREVIEW'); }
