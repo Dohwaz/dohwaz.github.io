@@ -10,6 +10,7 @@
             --bg-color: #f2ede4; 
             --text-main: #2d2a26;
             --text-dim: #7d756d;
+            --text-very-dim: #b8b1a9; /* 더 희미한 색상 추가 */
             --accent: #e5e0d8;
         }
 
@@ -104,10 +105,10 @@
             text-align: center;
             padding: 80px 20px 40px;
         }
-        .genres {
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            color: var(--text-dim);
+        .copyright {
+            font-size: 0.65rem; /* 크기를 조금 더 줄임 */
+            letter-spacing: 0.15em;
+            color: var(--text-very-dim); /* 더 희미한 색상 적용 */
             text-transform: uppercase;
         }
 
@@ -131,11 +132,9 @@
         <nav>
             <ul>
                 <li><a onclick="updateGrid('ALBUM')">ALBUM</a></li>
-                <li><a onclick="updateGrid('GOODS')">GOODS</a></li>
+                <li><a onclick="updateGrid('MERCH')">MERCH</a></li>
                 <li><a onclick="updateGrid('LIVE')">LIVE</a></li>
-                <li><a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a></li>
-                <li><a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a></li>
-                <li><a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a></li>
+                <li><a onclick="updateGrid('CONTACT')">CONTACT</a></li>
             </ul>
         </nav>
 
@@ -143,7 +142,7 @@
     </div>
 
     <footer>
-        <div class="genres">EXPERIMENTAL ELECTRONIC / ART POP</div>
+        <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
@@ -152,6 +151,7 @@
             const grid = document.getElementById('main-grid');
             grid.innerHTML = ''; 
             
+            // 실제 데이터가 들어갈 자리입니다. 현재는 9개의 빈 박스를 생성합니다.
             for (let i = 1; i <= 9; i++) {
                 const item = document.createElement('div');
                 item.className = 'grid-item';
