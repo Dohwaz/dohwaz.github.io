@@ -37,15 +37,16 @@
             min-height: 100vh;
         }
 
-        header { padding: 60px 0 40px 0; text-align: center; }
+        header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
         
         .logo-wrapper {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            text-decoration: none;
+            transition: none; 
         }
+        .logo-wrapper:hover { opacity: 1; } 
 
         header h1 {
             font-family: 'Great Vibes', cursive;
@@ -54,6 +55,8 @@
             font-weight: 400;
             margin: 0;
             color: var(--dark-brown) !important;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .container { 
@@ -65,13 +68,15 @@
             box-sizing: border-box; 
             flex-grow: 1; 
             display: flex; 
+            justify-content: center; 
+            align-items: center; 
             min-height: 500px; 
         }
 
         nav { position: absolute; left: 40px; top: 0; width: 150px; }
         nav ul { list-style: none; padding: 0; margin: 0; }
         nav ul li { margin-bottom: 22px; }
-        nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; }
+        nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; font-weight: 400; }
         nav ul li a:hover { color: var(--text-main); }
         nav ul li a.active { color: var(--text-main); font-weight: 500; letter-spacing: 0.5em; }
 
@@ -79,7 +84,8 @@
             width: 100%; 
             display: flex; 
             justify-content: center; 
-            align-items: center;
+            align-items: center; 
+            min-height: 400px;
         }
         
         .album-notice { 
@@ -88,43 +94,51 @@
             letter-spacing: 0.2em; 
             line-height: 1.6; 
             text-align: center; 
-            animation: fadeIn 1.2s ease;
+            font-weight: 350; 
+            animation: fadeIn 2s ease;
+            width: 100%;
         }
 
         .contact-form { 
             width: 100%; 
             max-width: 600px; 
-            animation: fadeIn 0.8s ease;
-            padding: 20px 0;
+            animation: fadeIn 1.2s ease;
+            padding: 40px 0;
         }
 
         .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
         .form-group { flex: 1; display: flex; flex-direction: column; }
-        .form-group label { font-size: 0.7rem; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
+        .form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
         .form-group input, .form-group textarea { 
             background: transparent; border: none; border-bottom: 1px solid var(--text-very-dim); 
-            padding: 10px 0; color: var(--text-main); outline: none; font-family: inherit; font-size: 0.85rem;
+            padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; 
         }
         .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
+        .form-group textarea { min-height: 60px; resize: vertical; }
         
         .submit-btn { 
             background: var(--dark-brown); color: var(--bg-color); border: none; 
             padding: 20px; font-size: 0.8rem; letter-spacing: 0.3em; cursor: pointer; 
-            width: 100%; margin-top: 30px; transition: 0.3s;
+            transition: 0.4s; margin-top: 40px; width: 100%; font-weight: 500; 
         }
-        .submit-btn:hover { background: var(--point-color); }
+        .submit-btn:hover { 
+            background: var(--point-color); 
+            letter-spacing: 0.4em; 
+        }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        footer { text-align: center; padding: 60px 0 40px; margin-top: auto; }
-        .social-links { margin-bottom: 15px; font-size: 0.7rem; }
-        .social-links a { text-decoration: none; color: var(--text-dim); padding: 0 10px; }
-        .copyright { font-size: 0.65rem; color: var(--text-very-dim); letter-spacing: 0.15em; }
+        footer { text-align: center; padding: 60px 20px 40px; z-index: 10; margin-top: auto; }
+        .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; }
+        .social-links a { text-decoration: none; color: var(--text-dim); transition: 0.3s; padding: 0 10px; }
+        .social-links a:hover { color: var(--text-main); }
+        .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
         @media (max-width: 900px) {
+            header { padding: 40px 0 20px 0; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
-            .container { flex-direction: column; align-items: center; }
-            .form-row { flex-direction: column; }
+            .container { flex-direction: column; align-items: center; min-height: auto; }
+            .form-row { flex-direction: column; gap: 25px; }
         }
     </style>
 </head>
@@ -146,15 +160,14 @@
             </ul>
         </nav>
         <div id="content-area">
-            <div id="main-grid" style="width: 100%; display: flex; justify-content: center; align-items: center;">
-                </div>
+            <div id="main-grid" style="width: 100%; display: flex; justify-content: center; align-items: center;"></div>
         </div>
     </div>
 
     <footer>
         <div class="social-links">
-            <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a>
-            <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>
+            <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a><span>|</span>
+            <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a><span>|</span>
             <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
         </div>
         <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
@@ -162,53 +175,77 @@
 
     <script>
         function updateGrid(menuName, element) {
+            const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + menuName;
+            window.history.pushState({path:newURL}, '', newURL);
+
             const menus = document.querySelectorAll('#menu-list a');
-            menus.forEach(menu => menu.classList.remove('active'));
-            if(element) element.classList.add('active');
+            menus.forEach(menu => {
+                menu.classList.remove('active');
+                if(menu.innerText === menuName) menu.classList.add('active');
+            });
             
             const grid = document.getElementById('main-grid');
             grid.innerHTML = ''; 
 
             if (menuName === 'CONTACT') {
+                // 이메일 전송을 위해 각 input에 name 속성을 추가했습니다.
                 grid.innerHTML = `
-                    <form id="contact-form" class="contact-form">
+                    <form id="mail-form" class="contact-form">
                         <div class="form-row">
-                            <div class="form-group"><label>Name</label><input type="text" name="name" required></div>
-                            <div class="form-group"><label>Email</label><input type="email" name="email" required></div>
+                            <div class="form-group"><label>Name</label><input type="text" name="name" data-label="Name" placeholder="성함"></div>
+                            <div class="form-group"><label>Email</label><input type="email" name="email" data-label="Email" placeholder="이메일 주소"></div>
                         </div>
-                        <div class="form-group" style="margin-bottom:20px;">
-                            <label>Message</label>
-                            <textarea name="message" rows="6" placeholder="Write your message here..." required></textarea>
+                        <div class="form-row">
+                            <div class="form-group"><label>Phone</label><input type="text" name="phone" data-label="Phone" placeholder="연락처"></div>
+                            <div class="form-group"><label>Company</label><input type="text" name="company" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)"></div>
                         </div>
-                        <button type="button" class="submit-btn" onclick="sendMail()">SUBMIT</button>
+                        <div class="form-row">
+                            <div class="form-group"><label>Event Date</label><input type="text" name="date" data-label="Event Date" placeholder="예상 날짜"></div>
+                            <div class="form-group"><label>Event Location</label><input type="text" name="location" data-label="Event Location" placeholder="진행 장소"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group"><label>Type of Event</label><input type="text" name="type" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
+                            <div class="form-group"><label>Performance Duration</label><input type="text" name="duration" data-label="Performance Duration" placeholder="공연 예상 시간"></div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예산 범위"></div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex. 특정 노래, 테마)"></textarea></div>
+                        <div class="form-group">
+                            <label>Additional Details</label>
+                            <textarea name="message" data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
+                        </div>
+                        <button type="button" class="submit-btn" onclick="validateForm()">SUBMIT</button>
                     </form>`;
             } else if (menuName === 'ALBUM') {
                 grid.innerHTML = '<div class="album-notice">2026 June Single<br>Debut Soon</div>';
             } else {
-                // PREVIEW 또는 기타 메뉴
-                grid.innerHTML = '<div class="album-notice">Dohwaz Official</div>';
+                grid.innerHTML = '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; width:100%; max-width:850px;">' + 
+                    Array(9).fill('<div style="aspect-ratio:1/1; background-color:var(--accent);"></div>').join('') + '</div>';
             }
         }
 
-        function sendMail() {
-            const form = document.getElementById('contact-form');
-            const btn = document.querySelector('.submit-btn');
-
-            if(!form.name.value || !form.email.value || !form.message.value) {
-                alert("Please fill in all required fields.");
-                return;
+        function validateForm() {
+            const form = document.getElementById('mail-form');
+            const inputs = form.querySelectorAll('input, textarea');
+            for (let input of inputs) {
+                if (input.value.trim() === "") {
+                    const labelName = input.getAttribute('data-label');
+                    alert(labelName + " 항목을 작성해 주세요.");
+                    input.focus();
+                    return;
+                }
             }
 
+            const btn = document.querySelector('.submit-btn');
             btn.innerText = "SENDING...";
             btn.disabled = true;
 
-            // Queen의 EmailJS 설정 (영문 템플릿 연동)
-            emailjs.sendForm('service_gmail', 'template_122vwoa', '#contact-form')
+            // Queen의 설정값 적용: 서비스ID(service_cww7ffk), 템플릿ID(template_122vwoa)
+            emailjs.sendForm('service_cww7ffk', 'template_122vwoa', '#mail-form')
                 .then(() => {
-                    alert("Message sent successfully!");
-                    updateGrid('PREVIEW');
-                }, (err) => {
-                    alert("Failed to send message. Error: " + err.text);
+                    alert("Thank you Queen. Your request has been sent.");
+                    location.reload(); 
+                }, (error) => {
+                    alert("Failed to send: " + JSON.stringify(error));
                     btn.innerText = "SUBMIT";
                     btn.disabled = false;
                 });
@@ -216,10 +253,11 @@
 
         function handleLogoClick() { updateGrid('PREVIEW'); }
 
-        // 초기 실행 보장
-        window.addEventListener('DOMContentLoaded', () => {
-            updateGrid('PREVIEW');
-        });
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page') || 'PREVIEW';
+            updateGrid(page);
+        };
     </script>
 </body>
 </html>
