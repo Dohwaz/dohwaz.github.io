@@ -110,9 +110,9 @@
     line-height: 1.8;
     color: var(--text-main);
     letter-spacing: 0.01em;
-    text-align: justify;   /* 문장 끝을 일직선으로 맞춥니다 */
-    word-break: keep-all;  /* 단어가 이상하게 잘리지 않게 합니다 */
-        }
+    text-align: left;      /* justify에서 left로 변경 */
+    word-break: keep-all; 
+}
         
         .profile-info strong {
             color: var(--point-color);
@@ -123,16 +123,16 @@
         @media (max-width: 950px) {
     .profile-wrapper { 
         flex-direction: column; 
-        text-align: left;    /* 가운데 정렬을 왼쪽 정렬로 변경 */
-        align-items: flex-start; /* 사진과 글을 왼쪽으로 붙임 */
-        gap: 40px; 
+        text-align: left; 
+        align-items: flex-start; /* 중앙 정렬 해제 */
+        gap: 30px; 
     }
-    .profile-img { 
-        width: 100%; 
-        max-width: 320px; 
-        box-shadow: 10px 10px 0px var(--accent); 
+    
+    .profile-info {
+        width: 100%;
+        padding: 0;
     }
-        
+}    
         @media (max-width: 1150px) {
             header { padding: 40px 0 20px; }
             nav { position: relative; left: 0; width: 100%; text-align: center; margin-bottom: 50px; }
@@ -184,15 +184,12 @@
         <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
         <div class="profile-info">
             <h2>Dohwaz</h2>
-                        <p>
-                            Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>.<br><br>
-                            Drawing inspiration from the fluid nature of canvas and sound, 
-                            I translate complex emotions into sonic textures that challenge the conventional.<br><br>
-                            Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.
-                        </p>
-                    </div>
-                </div>
-            `
+            <p>
+                Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>. Drawing inspiration from the fluid nature of canvas and sound, I translate complex emotions into sonic textures that challenge the conventional. Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.
+            </p>
+        </div>
+    </div>
+`
         };
 
         function updateGrid(menuName) {
