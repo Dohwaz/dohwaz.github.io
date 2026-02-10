@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
     
+    <link rel="icon" type="image/png" href="rose-alt.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     
     <style>
         :root {
@@ -18,7 +19,7 @@
             --text-very-dim: #b8b1a9;
             --accent: #e5e0d8;
             --point-color: #8b3a2b; 
-            --dark-brown: #3d2b1f; 
+            --dark-brown: #3d2b1f; /* 이 색상이 Queen이 원하는 그 흑갈색입니다 */
         }
 
         body {
@@ -33,31 +34,38 @@
 
         header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
         
-        /* 로고 영역: 장미 아이콘 + 텍스트 */
+        /* 로고 영역: 마우스 올려도 절대 변화 없음 */
         .logo-wrapper {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
-            transition: 0.3s;
+            text-decoration: none;
         }
-        .logo-wrapper:hover { opacity: 0.7; }
         
-        .logo-icon {
-            font-size: 2.5rem;
-            color: var(--dark-brown);
-            margin-bottom: 10px;
+        /* 장미 이미지: 크기 및 간격 조정 */
+        .logo-img {
+            width: 55px; /* 크기를 살짝 키웠습니다 */
+            height: auto;
+            margin-bottom: 5px;
         }
 
         header h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
+            font-size: 3.5rem; /* 작아진 느낌 없게 원래의 3.5rem으로 복구 */
             letter-spacing: 0.1em;
             font-weight: 400;
             margin: 0;
-            color: var(--dark-brown) !important;
+            color: var(--dark-brown) !important; /* 커서를 올려도 이 색 유지 */
             user-select: none;
             -webkit-tap-highlight-color: transparent;
+            transition: none !important; /* 애니메이션 효과 완전 삭제 */
+        }
+
+        /* 혹시라도 브라우저 기본 효과가 붙을까봐 한 번 더 차단 */
+        .logo-wrapper:hover h1, .logo-wrapper:active h1 {
+            color: var(--dark-brown) !important;
+            opacity: 1 !important;
         }
 
         .container { 
@@ -70,7 +78,7 @@
             flex-grow: 1; 
             display: flex; 
             justify-content: center; 
-            align-items: center; /* 세로 중앙 정렬 */
+            align-items: center; 
             min-height: 500px; 
         }
 
@@ -147,7 +155,7 @@
 
     <header>
         <div class="logo-wrapper" onclick="handleLogoClick()">
-            <i class="fi fi-ts-rose-alt logo-icon"></i>
+            <img src="rose-alt.png" alt="Rose Icon" class="logo-img">
             <h1>Dohwaz</h1>
         </div>
     </header>
