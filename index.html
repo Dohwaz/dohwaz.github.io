@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dohwaz | Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #f2ede4; 
@@ -21,7 +23,7 @@
             font-family: 'Apple SD Gothic Neo', sans-serif;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
+            min-height: 100vh; /* 화면 전체 높이 유지 */
         }
 
         header {
@@ -29,17 +31,20 @@
             text-align: center;
             z-index: 10;
         }
+
+        /* DOHWAZ 로고 서체 수정 */
         header h1 {
-            font-size: 2.2rem;
-            letter-spacing: 0.6em;
-            font-weight: 200;
+            font-family: 'Great Vibes', cursive; /* 필기체 적용 */
+            font-size: 3.5rem; /* 필기체는 보통 작게 보이므로 크기 키움 */
+            letter-spacing: 0.1em; /* 필기체는 자간이 좁아야 예쁨 */
+            font-weight: 400;
             margin: 0;
             cursor: pointer;
             transition: 0.3s;
+            text-transform: none; /* 필기체는 대소문자 혼합이 우아함 */
         }
         header h1:hover { opacity: 0.6; }
 
-        /* 전체 컨테이너를 상대 위치로 설정 */
         .container {
             position: relative;
             max-width: 1200px;
@@ -49,11 +54,11 @@
             box-sizing: border-box;
             flex-grow: 1;
             display: flex;
-            justify-content: center; /* 콘텐츠 중앙 정렬 */
+            justify-content: center;
             align-items: center;
+            min-height: 500px; /* 모바일에서 페이지가 너무 짧아지지 않게 고정 */
         }
 
-        /* 메뉴를 왼쪽 고정 위치로 이동시켜 중앙 정렬에 영향을 주지 않게 함 */
         nav {
             position: absolute;
             left: 40px;
@@ -65,9 +70,7 @@
             padding: 0;
             margin: 0;
         }
-        nav ul li {
-            margin-bottom: 22px;
-        }
+        nav ul li { margin-bottom: 22px; }
         nav ul li a {
             text-decoration: none;
             color: var(--text-dim);
@@ -79,20 +82,19 @@
         }
         
         nav ul li a:hover { color: var(--text-main); }
-
         nav ul li a.active {
             color: var(--text-main);
             font-weight: 500;
             letter-spacing: 0.5em;
         }
 
-        /* 메인 콘텐츠 영역: 화면 중앙에 위치함 */
         #content-area {
             width: 100%;
-            max-width: 800px; /* 그리드의 최대 너비 제한 */
+            max-width: 800px;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 400px; /* 앨범 뷰에서도 일정 높이 유지 */
         }
 
         .gallery {
@@ -108,8 +110,8 @@
             letter-spacing: 0.2em;
             line-height: 1.6;
             text-align: center;
-            font-weight: 400;
-            animation: fadeIn 1.5s ease;
+            font-weight: 350;
+            animation: fadeIn 2s ease;
         }
 
         @keyframes fadeIn {
@@ -130,6 +132,7 @@
             text-align: center;
             padding: 80px 20px 40px;
             z-index: 10;
+            margin-top: auto; /* 푸터를 항상 바닥으로 */
         }
 
         .social-links {
@@ -153,18 +156,19 @@
             text-transform: uppercase;
         }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
+            header { padding: 40px 0 20px 0; }
+            header h1 { font-size: 2.8rem; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
-            .container { flex-direction: column; }
-            #content-area { max-width: 100%; }
+            .container { flex-direction: column; min-height: auto; }
+            #content-area { min-height: 300px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1 onclick="handleLogoClick()">DOHWAZ</h1>
+        <h1 onclick="handleLogoClick()">Dohwaz</h1>
     </header>
 
     <div class="container">
