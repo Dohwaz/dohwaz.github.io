@@ -16,7 +16,7 @@
             --text-dim: #7d756d;
             --text-very-dim: #b8b1a9;
             --accent: #e5e0d8;
-            --point-color: #8b3a2b;
+            --point-color: #8b3a2b; /* 검붉은색 */
             --dark-brown: #3d2b1f; 
         }
 
@@ -60,12 +60,12 @@
             box-sizing: border-box; 
             flex-grow: 1; 
             display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            min-height: 600px;
+            justify-content: center; 
+            align-items: flex-start; /* 상단 정렬 유지 */
+            min-height: 500px; 
         }
 
-        nav { position: absolute; left: 40px; top: 20px; width: 150px; text-align: left; }
+        nav { position: absolute; left: 40px; top: 20px; width: 150px; }
         nav ul { list-style: none; padding: 0; margin: 0; }
         nav ul li { margin-bottom: 22px; }
         nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; font-weight: 400; }
@@ -74,13 +74,13 @@
 
         #content-area { 
             width: 100%; 
-            max-width: 900px; 
             display: flex; 
             justify-content: center; 
-            padding: 40px 0 100px 0;
-            margin-top: 20px;
+            align-items: flex-start; 
+            padding: 40px 0; 
         }
         
+        /* 앨범 소식 스타일 */
         .album-notice { 
             color: var(--point-color); 
             font-size: 1.8rem; 
@@ -93,15 +93,14 @@
             margin-top: 60px;
         }
 
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 15px; 
+        /* CONTACT 폼 스타일 - 중앙 정렬 보완 */
+        .contact-form { 
             width: 100%; 
+            max-width: 600px; 
+            animation: fadeIn 1.2s ease; 
+            margin-bottom: 80px; 
         }
-        .grid-item { aspect-ratio: 1 / 1; background-color: var(--accent); border: 1px solid rgba(0,0,0,0.03); }
 
-        .contact-form { width: 100%; max-width: 600px; animation: fadeIn 1.2s ease; }
         .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
         .form-group { flex: 1; display: flex; flex-direction: column; }
         .form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
@@ -112,17 +111,23 @@
         .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
         .form-group textarea { min-height: 60px; resize: vertical; }
         
+        /* SUBMIT 버튼 호버 색상 수정 */
         .submit-btn { 
             background: var(--dark-brown); color: var(--bg-color); border: none; 
             padding: 20px; font-size: 0.8rem; letter-spacing: 0.3em; cursor: pointer; 
             transition: 0.4s; margin-top: 40px; width: 100%; font-weight: 500; 
         }
-        .submit-btn:hover { background: var(--text-main); letter-spacing: 0.4em; }
+        .submit-btn:hover { 
+            background: var(--point-color); /* 요청하신 검붉은색으로 변경 */
+            letter-spacing: 0.4em; 
+        }
 
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         footer { text-align: center; padding: 80px 20px 40px; z-index: 10; margin-top: auto; }
         .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; }
         
-        /* 링크 호버 효과 다시 추가 */
+        /* SNS 호버 효과 복구 */
         .social-links a { 
             text-decoration: none; 
             color: var(--text-dim); 
@@ -130,20 +135,17 @@
             padding: 0 10px; 
         }
         .social-links a:hover { 
-            color: var(--text-main); /* 마우스 올렸을 때 진하게 */
+            color: var(--text-main); /* 마우스 올리면 진해짐 */
         }
 
         .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-        @media (max-width: 1024px) {
-            nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
-            #content-area { padding-top: 0; }
-        }
-
         @media (max-width: 768px) {
             header { padding: 40px 0 20px 0; }
+            nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
+            .container { flex-direction: column; align-items: center; }
             .form-row { flex-direction: column; gap: 25px; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            #content-area { padding: 0; }
         }
     </style>
 </head>
@@ -161,7 +163,7 @@
             </ul>
         </nav>
         <div id="content-area">
-            <div id="main-display" style="width: 100%;"></div>
+            <div id="main-grid" style="width: 100%; display: flex; justify-content: center;"></div>
         </div>
     </div>
 
@@ -175,6 +177,8 @@
     </footer>
 
     <script>
+        document.fonts.ready.then(function() { document.documentElement.classList.add('fonts-loaded'); });
+
         function updateGrid(menuName, element) {
             const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + menuName;
             window.history.pushState({path:newURL}, '', newURL);
@@ -185,11 +189,11 @@
                 if(menu.innerText === menuName) menu.classList.add('active');
             });
             
-            const display = document.getElementById('main-display');
-            display.innerHTML = ''; 
+            const grid = document.getElementById('main-grid');
+            grid.innerHTML = ''; 
 
             if (menuName === 'CONTACT') {
-                display.innerHTML = `
+                grid.innerHTML = `
                     <div class="contact-form">
                         <div class="form-row">
                             <div class="form-group"><label>Name</label><input type="text" data-label="Name" placeholder="성함"></div>
@@ -216,16 +220,10 @@
                         <button class="submit-btn" onclick="validateForm()">SUBMIT</button>
                     </div>`;
             } else if (menuName === 'ALBUM') {
-                display.innerHTML = '<div class="album-notice">2026 June Single<br>Debut Soon</div>';
+                grid.innerHTML = '<div class="album-notice">2026 June Single<br>Debut Soon</div>';
             } else {
-                const gridContainer = document.createElement('div');
-                gridContainer.className = 'gallery-grid';
-                for(let i=0; i<9; i++) {
-                    const item = document.createElement('div');
-                    item.className = 'grid-item';
-                    gridContainer.appendChild(item);
-                }
-                display.appendChild(gridContainer);
+                grid.innerHTML = '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:15px; width:100%; max-width:850px;">' + 
+                    Array(9).fill('<div style="aspect-ratio:1/1; background-color:var(--accent);"></div>').join('') + '</div>';
             }
         }
 
@@ -245,7 +243,6 @@
 
         function handleLogoClick() { updateGrid('PREVIEW'); }
 
-        document.fonts.ready.then(function() { document.documentElement.classList.add('fonts-loaded'); });
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const page = urlParams.get('page') || 'PREVIEW';
