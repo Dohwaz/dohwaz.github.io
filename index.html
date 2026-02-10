@@ -16,7 +16,7 @@
             --text-dim: #7d756d;
             --text-very-dim: #b8b1a9;
             --accent: #e5e0d8;
-            --point-color: #8b3a2b; /* 검붉은색 */
+            --point-color: #8b3a2b; 
             --dark-brown: #3d2b1f; 
         }
 
@@ -61,7 +61,7 @@
             flex-grow: 1; 
             display: flex; 
             justify-content: center; 
-            align-items: flex-start; /* 상단 정렬 유지 */
+            align-items: center; /* 수직 중앙 정렬의 핵심 */
             min-height: 500px; 
         }
 
@@ -76,11 +76,11 @@
             width: 100%; 
             display: flex; 
             justify-content: center; 
-            align-items: flex-start; 
-            padding: 40px 0; 
+            align-items: center; /* 내부 요소 수직 중앙 정렬 */
+            padding: 0; /* 불필요한 패딩 제거 */
+            flex-grow: 1;
         }
         
-        /* 앨범 소식 스타일 */
         .album-notice { 
             color: var(--point-color); 
             font-size: 1.8rem; 
@@ -90,15 +90,13 @@
             font-weight: 350; 
             animation: fadeIn 2s ease;
             width: 100%;
-            margin-top: 60px;
+            margin: 0; /* 위로 쏠리지 않게 마진 제거 */
         }
 
-        /* CONTACT 폼 스타일 - 중앙 정렬 보완 */
         .contact-form { 
             width: 100%; 
             max-width: 600px; 
             animation: fadeIn 1.2s ease; 
-            margin-bottom: 80px; 
         }
 
         .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
@@ -111,14 +109,13 @@
         .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
         .form-group textarea { min-height: 60px; resize: vertical; }
         
-        /* SUBMIT 버튼 호버 색상 수정 */
         .submit-btn { 
             background: var(--dark-brown); color: var(--bg-color); border: none; 
             padding: 20px; font-size: 0.8rem; letter-spacing: 0.3em; cursor: pointer; 
             transition: 0.4s; margin-top: 40px; width: 100%; font-weight: 500; 
         }
         .submit-btn:hover { 
-            background: var(--point-color); /* 요청하신 검붉은색으로 변경 */
+            background: var(--point-color); 
             letter-spacing: 0.4em; 
         }
 
@@ -126,18 +123,8 @@
         
         footer { text-align: center; padding: 80px 20px 40px; z-index: 10; margin-top: auto; }
         .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; }
-        
-        /* SNS 호버 효과 복구 */
-        .social-links a { 
-            text-decoration: none; 
-            color: var(--text-dim); 
-            transition: 0.3s; 
-            padding: 0 10px; 
-        }
-        .social-links a:hover { 
-            color: var(--text-main); /* 마우스 올리면 진해짐 */
-        }
-
+        .social-links a { text-decoration: none; color: var(--text-dim); transition: 0.3s; padding: 0 10px; }
+        .social-links a:hover { color: var(--text-main); }
         .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
         @media (max-width: 768px) {
@@ -145,7 +132,6 @@
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
             .container { flex-direction: column; align-items: center; }
             .form-row { flex-direction: column; gap: 25px; }
-            #content-area { padding: 0; }
         }
     </style>
 </head>
@@ -163,7 +149,7 @@
             </ul>
         </nav>
         <div id="content-area">
-            <div id="main-grid" style="width: 100%; display: flex; justify-content: center;"></div>
+            <div id="main-grid" style="width: 100%; display: flex; justify-content: center; align-items: center;"></div>
         </div>
     </div>
 
