@@ -119,6 +119,11 @@
     
     margin: 0;
 }
+        /* 볼드체(strong) 부분에 검붉은색 포인트 컬러 적용 */
+.profile-info strong {
+    color: var(--point-color); /* #8b3a2b 색상 적용 */
+    font-weight: 600;          /* 조금 더 두껍게 강조 */
+}
 
 /* 모바일에서도 사진과 글이 화면 중앙에 오게 유지 */
 @media (max-width: 950px) {
@@ -183,7 +188,9 @@
         <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
         <div class="profile-info">
             <h2>Dohwaz</h2>
-            <p>Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>. Drawing inspiration from the fluid nature of canvas and sound, I translate complex emotions into sonic textures that challenge the conventional. Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.</p>
+            <p>
+                Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>. Drawing inspiration from the fluid nature of canvas and sound, I translate complex emotions into sonic textures that challenge the conventional. Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.
+            </p>
         </div>
     </div>
 `
