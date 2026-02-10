@@ -28,7 +28,7 @@
         header { padding: 60px 0 40px; text-align: center; z-index: 10; }
         .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
         header h1 {
-            font-family: 'Great Vibes', cursive; font-size: 4.5rem; letter-spacing: 0em;
+            font-family: 'Great Vibes', cursive; font-size: 4rem; letter-spacing: 0em;
             font-weight: 400; margin: 0; color: var(--dark-brown) !important; user-select: none; -webkit-tap-highlight-color: transparent;
         }
 
@@ -170,20 +170,20 @@
       const CONTENT_CONFIG = {
             'ALBUM': '<div class="album-notice">Upcoming Debut Single<br>June 2026</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
-            'DEFAULT': `
-                <div class="profile-wrapper">
-                    <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
-                    <div class="profile-info">
-                        <h2>Dohwaz</h2>
-                        <p>
-                            Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>.<br><br>
-                            Drawing inspiration from the fluid nature of canvas and sound, 
-                            I translate complex emotions into sonic textures that challenge the conventional.<br><br>
-                            Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.
-                        </p>
-                    </div>
-                </div>
-            `
+         'DEFAULT': `
+    <div class="profile-wrapper">
+        <img src="profile.jpg" alt="Dohwaz" class="profile-img" onerror="this.src='Profile.JPG'">
+        <div class="profile-info">
+            <h2>Dohwaz</h2>
+            <p>
+                Dohwaz is a visionary artist exploring the boundaries of <strong>Experimental Electronic</strong> and <strong>Art Pop</strong>.<br><br>
+                Drawing inspiration from the fluid nature of canvas and sound, 
+                I translate complex emotions into sonic textures that challenge the conventional.<br><br>
+                Currently refining a new sonic landscape with Melodyne for the upcoming debut in June 2026.
+            </p>
+        </div>
+    </div>
+`
         };
 
         function updateGrid(menuName) {
