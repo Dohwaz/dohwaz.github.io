@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=block" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.1.0/uicons-thin-straight/css/uicons-thin-straight.css'>
     
     <style>
         :root {
@@ -30,25 +31,33 @@
             min-height: 100vh;
         }
 
-        header { padding: 80px 0 40px 0; text-align: center; z-index: 10; }
+        header { padding: 60px 0 40px 0; text-align: center; z-index: 10; }
+        
+        /* 로고 영역: 장미 아이콘 + 텍스트 */
+        .logo-wrapper {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .logo-wrapper:hover { opacity: 0.7; }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--dark-brown);
+            margin-bottom: 10px;
+        }
+
         header h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 3rem;
             letter-spacing: 0.1em;
             font-weight: 400;
             margin: 0;
-            cursor: pointer;
             color: var(--dark-brown) !important;
-            visibility: hidden;
-            opacity: 0;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-        }
-
-        .fonts-loaded header h1 {
-            visibility: visible;
-            opacity: 1;
-            transition: opacity 0.5s ease;
         }
 
         .container { 
@@ -56,16 +65,16 @@
             max-width: 1200px; 
             margin: 0 auto; 
             width: 100%; 
-            padding: 20px; 
+            padding: 0 20px; 
             box-sizing: border-box; 
             flex-grow: 1; 
             display: flex; 
             justify-content: center; 
-            align-items: center; /* 수직 중앙 정렬의 핵심 */
+            align-items: center; /* 세로 중앙 정렬 */
             min-height: 500px; 
         }
 
-        nav { position: absolute; left: 40px; top: 20px; width: 150px; }
+        nav { position: absolute; left: 40px; top: 0; width: 150px; }
         nav ul { list-style: none; padding: 0; margin: 0; }
         nav ul li { margin-bottom: 22px; }
         nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; font-weight: 400; }
@@ -76,9 +85,8 @@
             width: 100%; 
             display: flex; 
             justify-content: center; 
-            align-items: center; /* 내부 요소 수직 중앙 정렬 */
-            padding: 0; /* 불필요한 패딩 제거 */
-            flex-grow: 1;
+            align-items: center; 
+            min-height: 400px;
         }
         
         .album-notice { 
@@ -90,13 +98,13 @@
             font-weight: 350; 
             animation: fadeIn 2s ease;
             width: 100%;
-            margin: 0; /* 위로 쏠리지 않게 마진 제거 */
         }
 
         .contact-form { 
             width: 100%; 
             max-width: 600px; 
-            animation: fadeIn 1.2s ease; 
+            animation: fadeIn 1.2s ease;
+            padding: 40px 0;
         }
 
         .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
@@ -121,7 +129,7 @@
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        footer { text-align: center; padding: 80px 20px 40px; z-index: 10; margin-top: auto; }
+        footer { text-align: center; padding: 60px 20px 40px; z-index: 10; margin-top: auto; }
         .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; }
         .social-links a { text-decoration: none; color: var(--text-dim); transition: 0.3s; padding: 0 10px; }
         .social-links a:hover { color: var(--text-main); }
@@ -130,14 +138,19 @@
         @media (max-width: 768px) {
             header { padding: 40px 0 20px 0; }
             nav { position: static; width: 100%; text-align: center; margin-bottom: 40px; }
-            .container { flex-direction: column; align-items: center; }
+            .container { flex-direction: column; align-items: center; min-height: auto; }
             .form-row { flex-direction: column; gap: 25px; }
         }
     </style>
 </head>
 <body>
 
-    <header><h1 onclick="handleLogoClick()">Dohwaz</h1></header>
+    <header>
+        <div class="logo-wrapper" onclick="handleLogoClick()">
+            <i class="fi fi-ts-rose-alt logo-icon"></i>
+            <h1>Dohwaz</h1>
+        </div>
+    </header>
 
     <div class="container">
         <nav>
@@ -163,8 +176,6 @@
     </footer>
 
     <script>
-        document.fonts.ready.then(function() { document.documentElement.classList.add('fonts-loaded'); });
-
         function updateGrid(menuName, element) {
             const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + '?page=' + menuName;
             window.history.pushState({path:newURL}, '', newURL);
