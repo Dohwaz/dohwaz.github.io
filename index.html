@@ -318,14 +318,15 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
             });
         }
 
-        window.onload = () => {
+        // 페이지의 모든 리소스(이미지 등)가 로드된 후 즉시 실행
+window.addEventListener('load', () => {
     const page = new URLSearchParams(window.location.search).get('page') || 'PREVIEW';
     
-    // 모바일에서 터치 없이도 즉시 실행되도록 강제 호출
-    setTimeout(() => {
+    // 브라우저의 다음 프레임에 맞춰 실행 (가장 부드러운 방식)
+    requestAnimationFrame(() => {
         updateGrid(page);
-    }, 50); // 0.05초의 미세한 지연을 주어 브라우저가 준비될 시간을 줍니다.
-};
+    });
+});
 
         // 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
