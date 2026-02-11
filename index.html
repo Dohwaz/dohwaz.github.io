@@ -27,10 +27,10 @@
 body {
     background-color: var(--bg-color); color: var(--text-main); margin: 0;
     font-family: 'Apple SD Gothic Neo', sans-serif; display: flex; flex-direction: column; min-height: 100vh;
-    -webkit-user-select: none;  /* 사파리/크롬 */
-    -moz-user-select: none;     /* 파이어폭스 */
-    -ms-user-select: none;      /* IE/엣지 */
-    user-select: none;          /* 표준 */
+    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+    
+    /* [추가] 장미 커서 설정 */
+    cursor: url('Favicon.png') 16 16, auto;
 }
 
         p {
@@ -40,6 +40,22 @@ body {
     text-justify: inter-character; 
     /* 한국어와 영어가 섞여 있을 때 줄바꿈을 더 자연스럽게 해줍니다 */
     overflow-wrap: break-word;
+}
+        /* 44번 줄부터 새로 추가 */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); 
+    opacity: 0.12; /* 심심하지 않을 정도의 은은한 질감 */
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 링크나 버튼 위에서도 장미 커서 유지 */
+a, button, .logo-wrapper, .social-links a {
+    cursor: url('Favicon.PNG') 16 16, pointer !important;
 }
         
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
