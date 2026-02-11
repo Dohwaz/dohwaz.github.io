@@ -319,9 +319,13 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
         }
 
         window.onload = () => {
-            const page = new URLSearchParams(window.location.search).get('page') || 'PREVIEW';
-            updateGrid(page);
-        };
+    const page = new URLSearchParams(window.location.search).get('page') || 'PREVIEW';
+    
+    // 모바일에서 터치 없이도 즉시 실행되도록 강제 호출
+    setTimeout(() => {
+        updateGrid(page);
+    }, 50); // 0.05초의 미세한 지연을 주어 브라우저가 준비될 시간을 줍니다.
+};
 
         // 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
