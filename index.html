@@ -196,7 +196,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     <script>
         // 1. 콘텐츠 설정 객체: 여기서 문구를 수정하면 모든 곳에 반영됩니다.
       const CONTENT_CONFIG = {
-            'ALBUM': '<div class="album-notice">Upcoming Debut Single<br>June 2026</div>',
+            'RECORDS': '<div class="album-notice">Upcoming Debut Single<br>June 2026</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
          'DEFAULT': `
     <div class="profile-wrapper">
@@ -230,7 +230,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
             } else {
                 // 콘텐츠 결정 로직 최적화
                 let html = CONTENT_CONFIG['DEFAULT'];
-                if (menuName === 'ALBUM') html = CONTENT_CONFIG['ALBUM'];
+                if (menuName === 'RECORDS') html = CONTENT_CONFIG['RECORDS'];
                 else if (['MERCH', 'LIVE', 'EVENTS'].includes(menuName)) html = CONTENT_CONFIG['COMING_SOON'];
                 
                 grid.innerHTML = html;
