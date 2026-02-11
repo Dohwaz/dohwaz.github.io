@@ -24,45 +24,47 @@
     </script>
 
     <style>
-       :root {
+:root {
     --bg-color: #f2ede4; --text-main: #2d2a26; --text-dim: #7d756d;
     --text-very-dim: #b8b1a9; --accent: #e5e0d8; --point-color: #8b3a2b; --dark-brown: #3d2b1f; 
 }
 
+/* 1. body 설정 하나로 통합 */
 body {
-    background-color: var(--bg-color); color: var(--text-main); margin: 0;
-    font-family: 'Apple SD Gothic Neo', sans-serif; display: flex; flex-direction: column; min-height: 100vh;
-    -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+    background-color: var(--bg-color); 
+    color: var(--text-main); 
+    margin: 0;
+    font-family: 'Apple SD Gothic Neo', sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh;
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
     
-    /* [추가] 장미 커서 설정 */
-    cursor: url('Favicon.png?v=1') 16 16, auto;
+    /* 장미 커서 강제 적용: v=3으로 해서 브라우저가 새로 읽게 만듭니다 */
+    cursor: url('Favicon.png?v=3') 16 16, auto !important;
 }
 
-        p {
-    text-align: justify;
-    word-break: break-all;
-    /* 글자 사이의 간격을 미세하게 조정해서 공백 폭발을 막아줍니다 */
-    text-justify: inter-character; 
-    /* 한국어와 영어가 섞여 있을 때 줄바꿈을 더 자연스럽게 해줍니다 */
-    overflow-wrap: break-word;
-}
-        /* 44번 줄부터 새로 추가 */
+/* 2. 종이 질감 레이어 (body 밖에 따로 빼야 합니다) */
 body::before {
     content: "";
     position: fixed;
     top: 0; left: 0;
-    width: 100vw; height: 100vh;
+    width: 100%; height: 100%;
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); 
-    opacity: 0.12; /* 심심하지 않을 정도의 은은한 질감 */
+    opacity: 0.4; 
     pointer-events: none;
-    z-index: -1;
+    z-index: 9999; 
 }
 
-/* 링크나 버튼 위에서도 장미 커서 유지 */
-a, button, .logo-wrapper, .social-links a {
-    cursor: url('Favicon.png?v=1') 16 16, pointer !important;
+/* 3. 링크/버튼 위에서도 커서 고정 */
+a, button, .logo-wrapper, .social-links a, .menu-item, nav ul li a {
+    cursor: url('Favicon.png?v=3') 16 16, pointer !important;
 }
-        
+
+/* 나머지 디자인 설정 (기존과 동일) */
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
 header h1 {
@@ -81,18 +83,17 @@ header h1 {
     box-sizing: border-box; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 500px; 
 }
 
-/* [PC용 목록 설정] - 사진 옆 위치 고정 */
 nav { 
     position: absolute; 
     left: 40px; 
-    top: 58px; /* 이 수치를 250~300 사이에서 조절해 사진 높이와 맞추세요 */
+    top: 58px; 
     width: 150px; 
     z-index: 100;
 }
 
 nav ul { list-style: none; padding: 0; margin: 0; }
 nav ul li { margin-bottom: 22px; }
-nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; cursor: pointer; transition: 0.2s; }
+nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; transition: 0.2s; }
 nav ul li a:hover, nav ul li a.active { color: var(--text-main); }
 nav ul li a.active { font-weight: 500; letter-spacing: 0.5em; }
 
@@ -145,27 +146,15 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 }
 
 .profile-info p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    color: var(--text-main);
-    letter-spacing: 0.01em;
-    
-    /* 줄을 맞추는 핵심 3인방 */
-    text-align: justify;           /* 양쪽 끝 맞추기 */
-    text-justify: inter-character;  /* 글자 사이 간격을 조절 (공백 폭발 방지) */
-    word-break: break-all;         /* 단어가 길어도 줄 끝에서 무조건 자르기 */
-    
-    margin: 0;
+    font-size: 0.95rem; line-height: 1.8; color: var(--text-main); letter-spacing: 0.01em;
+    text-align: justify; text-justify: inter-character; word-break: break-all; margin: 0;
 }
 
 .profile-info strong { color: var(--point-color); font-weight: 600; }
 
-/* [반응형 설정] - 화면이 작아질 때 */
 @media (max-width: 1150px) {
     header { padding: 40px 0 20px; }
-    nav { 
-        position: relative; top: 0; left: 0; width: 100%; text-align: center; margin-bottom: 50px; 
-    }
+    nav { position: relative; top: 0; left: 0; width: 100%; text-align: center; margin-bottom: 50px; }
     nav ul li { display: block; margin-bottom: 20px; }
     .container { flex-direction: column; min-height: auto; }
     #content-area { padding: 0; min-height: 500px; }
@@ -173,7 +162,8 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     .profile-wrapper { flex-direction: column; align-items: center; padding: 0 20px; }
     .profile-info { width: 100%; max-width: 320px; }
 }
-    </style>
+</style>
+    
 </head>
 <body>
 
