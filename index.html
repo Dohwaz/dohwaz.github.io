@@ -30,7 +30,7 @@ body {
     -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
     
     /* [추가] 장미 커서 설정 */
-    cursor: url('Favicon.png') 16 16, auto;
+    cursor: url('Favicon.png?v=1') 16 16, auto;
 }
 
         p {
@@ -50,12 +50,12 @@ body::before {
     background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); 
     opacity: 0.12; /* 심심하지 않을 정도의 은은한 질감 */
     pointer-events: none;
-    z-index: 9999;
+    z-index: -1;
 }
 
 /* 링크나 버튼 위에서도 장미 커서 유지 */
 a, button, .logo-wrapper, .social-links a {
-    cursor: url('Favicon.PNG') 16 16, pointer !important;
+    cursor: url('Favicon.png?v=1') 16 16, pointer !important;
 }
         
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
