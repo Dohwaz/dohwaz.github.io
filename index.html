@@ -23,10 +23,15 @@
         (function() { emailjs.init("noI6vApUfz1edbWge"); })();
     </script>
 
-    <style>
+ <style>
 :root {
-    --bg-color: #f2ede4; --text-main: #2d2a26; --text-dim: #7d756d;
-    --text-very-dim: #b8b1a9; --accent: #e5e0d8; --point-color: #8b3a2b; --dark-brown: #3d2b1f; 
+    --bg-color: #f2ede4; 
+    --text-main: #2d2a26; 
+    --text-dim: #7d756d;
+    --text-very-dim: #b8b1a9; 
+    --accent: #e5e0d8; 
+    --point-color: #8b3a2b; /* 검붉은색 */
+    --dark-brown: #3d2b1f;  /* 로고 흑갈색 */
 }
 
 /* 1. 기본 커서 설정 (16x16 최적화) */
@@ -38,49 +43,76 @@ body {
     display: flex; 
     flex-direction: column; 
     min-height: 100vh;
-    -webkit-user-select: none; user-select: none;
+    -webkit-user-select: none; 
+    user-select: none;
     cursor: url('cursor.png?v=2026_final') 8 8, auto !important;
 }
 
-/* 2. 클릭 가능한 요소: 커서 모양만 포인터로 변경 */
+/* 2. 클릭 가능한 요소: 커서 모양 */
 a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
-/* 3. [복구] 텍스트 색상 절대 유지 설정 */
-/* 마우스를 올려도 Dohwaz 로고(흑갈색)와 목록 색상이 변하지 않도록 강제 고정합니다 */
-header h1, .logo-wrapper h1 { color: var(--dark-brown) !important; }
-nav ul li a, .social-links a { color: var(--text-dim) !important; }
-
-/* 4. [수정] 오직 커서 이미지 파일에만 필터 적용 */
-/* 텍스트가 아닌 '커서' 자체에 필터를 거는 것은 브라우저 제약이 있어, 
-   대신 '커서가 있는 영역'의 텍스트 색상이 변하는 실수를 범했습니다.
-   Queen, 커서 이미지 색상 자체를 바꾸려면 파일 자체를 수정하는 것이 가장 확실합니다. 
-   코드로는 텍스트 색상 변화 없이 커서만 붉게 만드는 데 한계가 있어, 
-   일단 텍스트 색상이 변하는 모든 호버 효과를 삭제했습니다. */
-
-a:hover, .logo-wrapper:hover h1, nav ul li a:hover, .social-links a:hover {
-    color: inherit !important; /* 텍스트 색상 변화 절대 없음 */
-    filter: none !important;    /* 텍스트에 필터 걸리는 현상 제거 */
+/* 3. [로고] 절대 사수 - 어떤 경우에도 흑갈색 유지 */
+header h1, .logo-wrapper h1 { 
+    color: var(--dark-brown) !important; 
+    transition: none !important;
 }
 
-/* 5. 버튼만 Queen이 정한 포인트 컬러로 깔끔하게 변경 */
-.submit-btn:hover {
-    background-color: var(--point-color) !important;
-    color: var(--bg-color) !important;
+/* 4. [메뉴 목록] 호버 시 검붉게, 클릭 시(active) 검붉은색 유지 */
+nav ul li a { 
+    text-decoration: none; 
+    color: var(--text-dim); 
+    font-size: 0.85rem; 
+    letter-spacing: 0.15em; 
+    transition: 0.2s; 
+}
+nav ul li a:hover { 
+    color: var(--point-color) !important; 
+}
+nav ul li a.active { 
+    color: var(--point-color) !important; /* 클릭 후 유지되는 색상 */
+    font-weight: 500; 
+    letter-spacing: 0.5em; 
 }
 
-/* 나머지 디자인 설정 (기존과 동일) */
+/* 5. [SNS 링크] 호버 시에만 검붉게, 치우면 원래대로 복구 */
+.social-links a { 
+    text-decoration: none; 
+    color: var(--text-dim); 
+    transition: 0.3s; 
+    padding: 0 10px;
+}
+.social-links a:hover { 
+    color: var(--point-color) !important; 
+}
+
+/* 6. 버튼 디자인 */
+.submit-btn { 
+    background: var(--dark-brown); 
+    color: var(--bg-color); 
+    border: none; 
+    padding: 20px; 
+    font-size: 0.8rem; 
+    letter-spacing: 0.3em; 
+    cursor: pointer; 
+    transition: 0.4s; 
+    margin-top: 40px; 
+    width: 100%; 
+    font-weight: 500; 
+}
+.submit-btn:hover { 
+    background-color: var(--point-color) !important; 
+    letter-spacing: 0.4em; 
+}
+.submit-btn:disabled { background: var(--text-very-dim); cursor: not-allowed; }
+
+/* 7. 기타 레이아웃 설정 (건드리지 마세요) */
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
 header h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem; 
-    letter-spacing: 0em;
-    font-weight: 400;
-    margin: 0;
-    color: var(--dark-brown) !important;
-    user-select: none;
+    font-size: 4rem; letter-spacing: 0em; font-weight: 400; margin: 0;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -89,73 +121,32 @@ header h1 {
     box-sizing: border-box; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 500px; 
 }
 
-nav { 
-    position: absolute; 
-    left: 40px; 
-    top: 58px; 
-    width: 150px; 
-    z-index: 100;
-}
-
+nav { position: absolute; left: 40px; top: 58px; width: 150px; z-index: 100; }
 nav ul { list-style: none; padding: 0; margin: 0; }
 nav ul li { margin-bottom: 22px; }
-nav ul li a { text-decoration: none; color: var(--text-dim); font-size: 0.85rem; letter-spacing: 0.15em; transition: 0.2s; }
-nav ul li a:hover, nav ul li a.active { color: var(--text-main); }
-nav ul li a.active { font-weight: 500; letter-spacing: 0.5em; }
 
-#content-area { 
-    width: 100%; display: flex; justify-content: center; align-items: center; 
-    min-height: 400px; box-sizing: border-box; padding: 0 170px;
-}
+#content-area { width: 100%; display: flex; justify-content: center; align-items: center; min-height: 400px; box-sizing: border-box; padding: 0 170px; }
 
-.album-notice { 
-    color: var(--point-color); font-size: 1.8rem; letter-spacing: 0.2em; line-height: 1.6; 
-    text-align: center; font-weight: 350; animation: fadeIn 2s ease; width: 100%;
-}
+.album-notice { color: var(--point-color); font-size: 1.8rem; letter-spacing: 0.2em; line-height: 1.6; text-align: center; font-weight: 350; animation: fadeIn 2s ease; width: 100%; }
 
 .contact-form { width: 100%; max-width: 600px; animation: fadeIn 1.2s ease; padding: 40px 0; }
 .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
 .form-group { flex: 1; display: flex; flex-direction: column; }
 .form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
-.form-group input, .form-group textarea { 
-    background: transparent; border: none; border-bottom: 1px solid var(--text-very-dim); 
-    padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; 
-}
+.form-group input, .form-group textarea { background: transparent; border: none; border-bottom: 1px solid var(--text-very-dim); padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; }
 .form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
 .form-group textarea { min-height: 60px; resize: vertical; }
-
-.submit-btn { 
-    background: var(--dark-brown); color: var(--bg-color); border: none; padding: 20px; 
-    font-size: 0.8rem; letter-spacing: 0.3em; cursor: pointer; transition: 0.4s; margin-top: 40px; width: 100%; font-weight: 500; 
-}
-.submit-btn:hover { background: var(--point-color); letter-spacing: 0.4em; }
-.submit-btn:disabled { background: var(--text-very-dim); cursor: not-allowed; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-dim); }
-.social-links a { text-decoration: none; color: inherit; transition: 0.3s; padding: 0 10px; }
-.social-links a:hover { color: var(--text-main); }
 .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-.profile-wrapper {
-    display: flex; align-items: center; gap: 60px; max-width: 900px; margin: 0 auto; text-align: left; animation: fadeIn 2s ease;
-}
-
-.profile-img {
-    width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover;
-}
-
-.profile-info h2 {
-    font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--point-color); margin: 0 0 20px 0;
-}
-
-.profile-info p {
-    font-size: 0.95rem; line-height: 1.8; color: var(--text-main); letter-spacing: 0.01em;
-    text-align: justify; text-justify: inter-character; word-break: break-all; margin: 0;
-}
-
+.profile-wrapper { display: flex; align-items: center; gap: 60px; max-width: 900px; margin: 0 auto; text-align: left; animation: fadeIn 2s ease; }
+.profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
+.profile-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--point-color); margin: 0 0 20px 0; }
+.profile-info p { font-size: 0.95rem; line-height: 1.8; color: var(--text-main); letter-spacing: 0.01em; text-align: justify; text-justify: inter-character; word-break: break-all; margin: 0; }
 .profile-info strong { color: var(--point-color); font-weight: 600; }
 
 @media (max-width: 1150px) {
