@@ -29,6 +29,7 @@
     --text-very-dim: #b8b1a9; --accent: #e5e0d8; --point-color: #8b3a2b; --dark-brown: #3d2b1f; 
 }
 
+/* 1. 기본 커서 설정 (16x16 최적화) */
 body {
     background-color: var(--bg-color); 
     color: var(--text-main); 
@@ -39,15 +40,25 @@ body {
     min-height: 100vh;
     -webkit-user-select: none; user-select: none;
     
-    /* [수정] 파일명을 cursor.png로 변경하고 v값을 업데이트했습니다 */
-    cursor: url('cursor.png?v=2026') 16 16, auto !important;
+    /* 장미의 정중앙이 클릭 지점이 되도록 8 8 설정 */
+    cursor: url('cursor.png?v=2026_final') 8 8, auto !important;
 }
 
-/* [삭제] 거슬렸던 노이즈 레이어(body::before)를 통째로 지웠습니다. */
-
-/* [수정] 클릭 가능한 모든 요소에도 cursor.png 반영 */
+/* 2. 클릭 가능한 요소 위에서의 커서 설정 */
 a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
-    cursor: url('cursor.png?v=2026') 16 16, pointer !important;
+    cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
+}
+
+/* 3. [핵심] 마우스를 올렸을 때 커서 색상만 '검붉게' 필터링 */
+a:hover, button:hover, .logo-wrapper:hover, nav ul li a:hover, [onclick]:hover {
+    /* 텍스트 색상 변화 없이, 오직 커서 이미지에만 검붉은 톤의 필터를 입힙니다 */
+    filter: sepia(1) saturate(10) hue-rotate(-50deg) brightness(0.7);
+}
+
+/* 4. 버튼 호버 시 배경색만 변경 (텍스트 색상은 유지) */
+.submit-btn:hover {
+    background-color: var(--point-color) !important;
+    filter: none; /* 버튼 자체에 필터가 걸리지 않게 방지 */
 }
 
 /* 나머지 디자인 설정 (기존과 동일) */
