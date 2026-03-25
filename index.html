@@ -151,8 +151,10 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     font-size: 0.95rem; 
     line-height: 2.1; 
     color: var(--text-main); 
-    text-align: justify; 
+    text-align: justify; /* 양쪽 정렬 유지 */
     margin: 0; 
+    /* 추가할 핵심 코드 */
+    word-break: break-all; /* 단어 중간에서도 줄바꿈을 허용해 자간을 일정하게 만듦 */
 }
 
 /* 한글은 촘촘하게 */
