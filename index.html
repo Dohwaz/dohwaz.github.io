@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Dohwaz | Official</title>
+    <title>Dohwaz | Official</title>
     <meta name="naver-site-verification" content="40755a6a7b1880b3091867b98fc561f694b256d6" />
     <meta name="description" content="Evolving landscapes of sound by Dohwaz.">
     <meta property="og:title" content="Dohwaz | Official">
     <meta property="og:description" content="Echoes of the internal journey.">
     <meta property="og:image" content="Profile.JPG">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<link rel="icon" type="image/png" href="Favicon.png">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="icon" type="image/png" href="Favicon.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,11 +30,10 @@
     --text-dim: #7d756d;
     --text-very-dim: #b8b1a9; 
     --accent: #e5e0d8; 
-    --point-color: #8b3a2b; /* 검붉은색 */
-    --dark-brown: #3d2b1f;  /* 로고 흑갈색 */
+    --point-color: #8b3a2b; 
+    --dark-brown: #3d2b1f;  
 }
 
-/* 1. 기본 커서 설정 (16x16 최적화) */
 body {
     background-color: var(--bg-color); 
     color: var(--text-main); 
@@ -48,18 +47,15 @@ body {
     cursor: url('cursor.png?v=2026_final') 8 8, auto !important;
 }
 
-/* 2. 클릭 가능한 요소: 커서 모양 */
 a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
-/* 3. [로고] 절대 사수 - 어떤 경우에도 흑갈색 유지 */
 header h1, .logo-wrapper h1 { 
     color: var(--dark-brown) !important; 
     transition: none !important;
 }
 
-/* 4. [메뉴 목록] 호버 시 검붉게, 클릭 시(active) 검붉은색 유지 */
 nav ul li a { 
     text-decoration: none; 
     color: var(--text-dim); 
@@ -71,12 +67,11 @@ nav ul li a:hover {
     color: var(--point-color) !important; 
 }
 nav ul li a.active { 
-    color: var(--point-color) !important; /* 클릭 후 유지되는 색상 */
+    color: var(--point-color) !important; 
     font-weight: 500; 
     letter-spacing: 0.5em; 
 }
 
-/* 5. [SNS 링크] 호버 시에만 검붉게, 치우면 원래대로 복구 */
 .social-links a { 
     text-decoration: none; 
     color: var(--text-dim); 
@@ -87,7 +82,6 @@ nav ul li a.active {
     color: var(--point-color) !important; 
 }
 
-/* 6. 버튼 디자인 */
 .submit-btn { 
     background: var(--dark-brown); 
     color: var(--bg-color); 
@@ -107,7 +101,6 @@ nav ul li a.active {
 }
 .submit-btn:disabled { background: var(--text-very-dim); cursor: not-allowed; }
 
-/* 7. 기타 레이아웃 설정 (건드리지 마세요) */
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
 header h1 {
@@ -146,34 +139,18 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 .profile-wrapper { display: flex; align-items: center; gap: 60px; max-width: 900px; margin: 0 auto; text-align: left; animation: fadeIn 2s ease; }
 .profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
 .profile-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--point-color); margin: 0 0 20px 0; }
-/* 공통 설정 */
+
 .profile-info p { 
     font-size: 0.95rem; 
     line-height: 2.1; 
     color: var(--text-main); 
     text-align: justify; 
     margin: 0; 
+    letter-spacing: 0.04em;
     
-    /* 1. 단어 중간에 하이픈(-)을 넣으며 자연스럽게 끊기 */
-    hyphens: auto; 
-    -webkit-hyphens: auto;
-
-    /* 2. 글자 단위로 자르되, 너무 무리하게 자르지 않기 */
-    word-break: keep-all; /* 단어 단위로 유지하되 */
-    overflow-wrap: break-word; /* 필요한 경우에만 단어를 자름 */
-    
-    /* 3. 마지막 줄이 너무 짧게 끝나는 것 방지 (브라우저 지원 확인 필요) */
+    /* 단어가 끊겨도 양 끝 정렬을 일정하게 맞춤 */
+    word-break: break-all; 
     text-wrap: pretty; 
-}
-
-/* 한글은 촘촘하게 */
-.profile-info p.kor { 
-    letter-spacing: 0px; 
-}
-
-/* 영어는 여유 있게 */
-.profile-info p.eng { 
-    letter-spacing: 0.04em; 
 }
 .profile-info strong { color: var(--point-color); font-weight: 600; }
 
@@ -222,7 +199,6 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     </footer>
 
     <script>
-        // 1. 콘텐츠 설정 객체: 여기서 문구를 수정하면 모든 곳에 반영됩니다.
       const CONTENT_CONFIG = {
             'RECORDS': '<div class="album-notice"><br>GONG</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
@@ -231,7 +207,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
         <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
         <div class="profile-info">
             <h2>Dohwaz</h2>
-                <p class="eng">
+                <p>
     Dohwaz captures <strong>internal landscapes</strong> through honest soundwaves. Rather than categorization, she focuses on the <strong>integrity of the theme</strong>—archiving the raw fragments of existence. Everything flows and resonates within a void called <strong>GONG</strong>. No boundaries, no fixed timelines. Just the continuous <strong>resonance</strong> of a soul.
             </p>
         </div>
@@ -240,11 +216,9 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
         };
 
         function updateGrid(menuName) {
-            // URL 업데이트
             const newURL = `${window.location.pathname}?page=${menuName}`;
             window.history.pushState({path: newURL}, '', newURL);
 
-            // 메뉴 활성화 스타일 변경
             document.querySelectorAll('#menu-list a').forEach(menu => {
                 menu.classList.toggle('active', menu.innerText === menuName);
             });
@@ -254,7 +228,6 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
             if (menuName === 'CONTACT') {
                 renderContactForm(grid);
             } else {
-                // 콘텐츠 결정 로직 최적화
                 let html = CONTENT_CONFIG['DEFAULT'];
                 if (menuName === 'RECORDS') html = CONTENT_CONFIG['RECORDS'];
                 else if (['MERCH', 'LIVE', 'EVENTS'].includes(menuName)) html = CONTENT_CONFIG['COMING_SOON'];
@@ -282,7 +255,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
                         <div class="form-group"><label>Type of Event</label><input type="text" name="type" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
                         <div class="form-group"><label>Performance Duration</label><input type="text" name="duration" data-label="Performance Duration" placeholder="예상 길이(시간) / 협업 기간"></div>
                     </div>
-                    <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예산 범위"></div>
+                    <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예상 범위"></div>
                     <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex.특정 곡,테마)"></textarea></div>
                     <div class="form-group">
                         <label>Additional Details</label>
@@ -325,17 +298,13 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
             });
         }
 
-        // 페이지의 모든 리소스(이미지 등)가 로드된 후 즉시 실행
 window.addEventListener('load', () => {
     const page = new URLSearchParams(window.location.search).get('page') || 'PREVIEW';
-    
-    // 브라우저의 다음 프레임에 맞춰 실행 (가장 부드러운 방식)
     requestAnimationFrame(() => {
         updateGrid(page);
     });
 });
 
-        // 우클릭 방지
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
 }, false);
