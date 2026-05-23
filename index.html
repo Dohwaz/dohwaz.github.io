@@ -24,15 +24,14 @@
     </script>
 
 <style>
-/* 🎨 안개 낀 피아노 방, 물기 어린 무채색 무드의 여름 쿨 라이트 아티스트 팔레트 */
+/* 🎨 딥 베이지 배경과 밝은 텍스트 테마 */
 :root {
-    --bg-color: #edecee;       /* 1. 안개가 낮게 깔린 듯한 모브 실버 그레이 배경 */
-    --text-main: #4a494d;      /* 2. 물기 어린 딥 쿨 그레이 (기존 브라운/버건디 완전 삭제) */
-    --text-dim: #8e8d93;       /* 3. 힘을 뺀 안개 속의 메뉴 글씨 색상 */
-    --text-very-dim: #d1d0d4;  /* 4. 보일 듯 말 듯 투명한 라인/카피라이트 색상 */
-    --accent: rgba(74, 73, 77, 0.08); /* 5. 사진 뒤 그림자: 연기가 번지는 듯한 투명한 흑백 음영 */
-    --point-color: #a39ca8;    /* 6. 모브 미스트 (성숙하고 차분한, 안개 어린 보랏빛 그레이) */
-    --dark-brown: #363538;     /* 7. 로고와 버튼: 가볍지 않은 무게감을 주는 챠콜 모브 그레이 */
+    --bg-color: #cdc7bd;       /* 사진 속 음영이 감도는 묵직한 오리지널 딥 베이지 */
+    --text-main: #ffffff;      /* 어두운 베이지 위에서 선명하게 빛나는 화이트 */
+    --text-dim: #f0ede9;       /* 은은하고 차분한 미색 화이트 (기본 메뉴/글씨 톤) */
+    --text-very-dim: #55524e;  /* 대비감을 주는 어두운 섀도우 그레이 (카피라이트 및 라인) */
+    --point-color: #1e1d1c;    /* 호버 시 가라앉는 깊고 어두운 토프 블랙 디테일 */
+    --card-shadow: rgba(30, 29, 28, 0.25); /* 깊이감을 더해주는 인텐스 섀도우 */
 }
 
 body {
@@ -52,9 +51,10 @@ a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
+/* 📌 제목(로고)은 호버 효과 제외하여 고유의 무게감 유지 */
 header h1, .logo-wrapper h1 { 
     font-family: 'Fleur De Leah', cursive !important;
-    color: var(--dark-brown) !important; 
+    color: var(--point-color) !important; /* 베이지 배경과 대비되는 선명하고 깊은 시그니처 컬러 */
     font-size: 5.0rem; 
     line-height: 1.3;
     padding: 10px 20px;
@@ -64,51 +64,56 @@ header h1, .logo-wrapper h1 {
     -webkit-tap-highlight-color: transparent;
     display: inline-block;
     transition: none !important;
-    /* ✨ 로고 주변으로 서늘한 습기와 안개가 번진 듯한 text-shadow 레이어링 */
-    text-shadow: 0 0 20px rgba(163, 156, 168, 0.4), 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
+/* 📌 목록(메뉴) 글씨 설정 및 마우스 올렸을 때(hover) 색상 변경 */
 nav ul li a { 
     text-decoration: none; 
     color: var(--text-dim); 
     font-size: 0.85rem; 
     letter-spacing: 0.15em; 
-    transition: 0.2s; 
+    transition: color 0.25s ease, letter-spacing 0.25s ease; 
+    display: inline-block;
 }
 nav ul li a:hover { 
-    color: var(--point-color) !important; 
-}
-nav ul li a.active { 
-    color: var(--point-color) !important; 
-    font-weight: 500; 
-    letter-spacing: 0.5em; 
+    color: var(--point-color) !important; /* 마우스 갖다 대면 묵직한 어두운 색으로 변경 */
 }
 
+/* 📌 클릭해서 활성화된 메뉴 글씨 색상 고정 및 유지 (.active) */
+nav ul li a.active { 
+    color: var(--point-color) !important; /* 다른 메뉴로 넘어가기 전까지 바뀐 색상 유지 */
+    font-weight: 600; 
+    letter-spacing: 0.3em; 
+}
+
+/* 하단 소셜 링크 호버 효과 */
 .social-links a { 
     text-decoration: none; 
     color: var(--text-dim); 
-    transition: 0.3s; 
+    transition: color 0.25s ease; 
     padding: 0 10px;
 }
 .social-links a:hover { 
     color: var(--point-color) !important; 
 }
 
+/* 문의하기 버튼 스타일 */
 .submit-btn { 
-    background: var(--dark-brown); 
-    color: var(--bg-color); 
+    background: var(--point-color); 
+    color: var(--text-dim); 
     border: none; 
     padding: 20px; 
     font-size: 0.8rem; 
     letter-spacing: 0.3em; 
     cursor: pointer; 
-    transition: 0.4s; 
+    transition: 0.3s; 
     margin-top: 40px; 
     width: 100%; 
     font-weight: 500; 
 }
 .submit-btn:hover { 
-    background-color: var(--point-color) !important; 
+    background-color: var(--text-main) !important; 
+    color: var(--point-color) !important;
     letter-spacing: 0.4em; 
 }
 .submit-btn:disabled { background: var(--text-very-dim); cursor: not-allowed; }
@@ -129,12 +134,14 @@ nav ul li { margin-bottom: 22px; }
 
 .album-notice { color: var(--point-color); font-size: 1.8rem; letter-spacing: 0.2em; line-height: 1.6; text-align: center; font-weight: 350; animation: fadeIn 2s ease; width: 100%; }
 
+/* CONTACT 폼 내부 입력창도 다크 테마에 맞춰 투명도와 라인 색상 조정 */
 .contact-form { width: 100%; max-width: 600px; animation: fadeIn 1.2s ease; padding: 40px 0; }
 .form-row { display: flex; gap: 20px; margin-bottom: 25px; }
 .form-group { flex: 1; display: flex; flex-direction: column; }
-.form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
-.form-group input, .form-group textarea { background: transparent; border: none; border-bottom: 1px solid var(--text-very-dim); padding: 10px 0; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; }
-.form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--dark-brown); }
+.form-group label { font-size: 0.7rem; letter-spacing: 0.05em; color: var(--point-color); margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
+.form-group input, .form-group textarea { background: rgba(255, 255, 255, 0.15); border: none; border-bottom: 1px solid var(--text-dim); padding: 10px 12px; color: var(--text-main); font-family: inherit; font-size: 0.85rem; outline: none; }
+.form-group input:focus, .form-group textarea:focus { border-bottom-color: var(--point-color); background: rgba(255, 255, 255, 0.25); }
+::placeholder { color: rgba(255, 255, 255, 0.6); }
 .form-group textarea { min-height: 60px; resize: vertical; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -151,11 +158,10 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     margin: 0 auto; 
     animation: fadeIn 2s ease; 
 }
-/* 🌫 사진 뒤 딱딱한 실선 그래픽 느낌의 그림자를 걷어내고, 부드럽고 몽환적인 스머지 투명 블러 효과로 전면 수정 */
 .profile-img { 
     width: 320px; 
     height: auto; 
-    box-shadow: 0 20px 40px var(--accent), 0 5px 15px rgba(0,0,0,0.03); 
+    box-shadow: 15px 15px 35px var(--card-shadow); 
     object-fit: cover; 
 }
 
@@ -198,7 +204,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
         <div class="social-links">
             <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a>|
             <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>|
-            <a href="https://www.instagram.com/dohwaz/" target="_blank text-dim">INSTAGRAM</a>
+            <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
         </div>
         <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
     </footer>
@@ -207,17 +213,18 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
       const CONTENT_CONFIG = {
             'RECORDS': '<div class="album-notice"><br>GONG</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
-         'DEFAULT': `
-    <div class="profile-wrapper">
-        <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
-    </div>
-`
+            'DEFAULT': `
+                <div class="profile-wrapper">
+                    <img src="Profile.JPG" alt="Dohwaz" class="profile-img">
+                </div>
+            `
         };
 
         function updateGrid(menuName) {
             const newURL = `${window.location.pathname}?page=${menuName}`;
             window.history.pushState({path: newURL}, '', newURL);
 
+            // 📌 클릭된 메뉴글씨 스타일 상태를 고정 및 유지해주는 핵심 로직
             document.querySelectorAll('#menu-list a').forEach(menu => {
                 menu.classList.toggle('active', menu.innerText === menuName);
             });
