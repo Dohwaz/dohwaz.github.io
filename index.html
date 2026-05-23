@@ -16,7 +16,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shalimar&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ephesis&display=block" rel="stylesheet">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -51,17 +51,10 @@ a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
-/* 109번째 줄 근처 CSS 변경 */
-header h1 {
-    font-family: 'Shalimar', cursive;
-    font-size: 5.5rem; 
-    line-height: 1.1;
-    padding: 10px 20px;
-    letter-spacing: 0.05em; 
-    font-weight: 400; 
-    margin: 0;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
+/* 제목 색상을 다시 차분한 밤색(--dark-brown)으로 변경 */
+header h1, .logo-wrapper h1 { 
+    color: var(--dark-brown) !important; 
+    transition: none !important;
 }
 
 nav ul li a { 
@@ -111,7 +104,20 @@ nav ul li a.active {
 
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
-     
+
+/* Ephesis 맞춤 스타일링 */
+header h1 {
+    font-family: 'Ephesis', cursive;
+    font-size: 5.4rem; 
+    line-height: 1.1;
+    padding: 10px 20px;
+    letter-spacing: 0em; 
+    font-weight: 400; 
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+}
+
 .container { 
     position: relative; max-width: 1200px; margin: 0 auto; width: 100%; padding: 0 20px; 
     box-sizing: border-box; flex-grow: 1; display: flex; justify-content: center; align-items: center; min-height: 500px; 
