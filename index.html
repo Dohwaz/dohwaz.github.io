@@ -16,7 +16,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=block" rel="stylesheet">
     
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -51,8 +51,9 @@ a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
+/* 큰 제목 색상을 목록 호버 색상인 --point-color(붉은색)로 고정 */
 header h1, .logo-wrapper h1 { 
-    color: var(--dark-brown) !important; 
+    color: var(--point-color) !important; 
     transition: none !important;
 }
 
@@ -104,10 +105,11 @@ nav ul li a.active {
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
 
+/* 폰트를 'Alex Brush'로 변경하고 크기 및 정렬 최적화 */
 header h1 {
-    font-family: 'Pinyon Script', cursive;
-    font-size: 4.5rem; 
-    line-height: 1.4;
+    font-family: 'Alex Brush', cursive;
+    font-size: 4.8rem; 
+    line-height: 1.2;
     padding: 10px 20px;
     letter-spacing: 0em; 
     font-weight: 400; 
@@ -143,7 +145,6 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-dim); }
 .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-/* 텍스트 제거 후 단독 사진 중앙 배치를 위한 미니멀 래퍼 설정 */
 .profile-wrapper { 
     display: flex; 
     justify-content: center; 
@@ -162,7 +163,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     #content-area { padding: 0; min-height: 500px; }
     .form-row { flex-direction: column; gap: 25px; }
     .profile-wrapper { padding: 0 20px; }
-    .profile-img { width: 280px; } /* 모바일에서 화면 비율에 맞춰 소폭 조정 */
+    .profile-img { width: 280px; }
 }
 </style>
     
@@ -193,7 +194,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
         <div class="social-links">
             <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a>|
             <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>|
-            <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
+            <a href="https://www.instagram.com/dohwaz/" target="_blank text-dim">INSTAGRAM</a>
         </div>
         <div class="copyright">© 2026 DUSTN. ALL RIGHTS RESERVED.</div>
     </footer>
@@ -202,7 +203,6 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
       const CONTENT_CONFIG = {
             'RECORDS': '<div class="album-notice"><br>GONG</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
-         /* 메인 텍스트 요소를 완전히 비우고 사진만 정중앙에 배치 */
          'DEFAULT': `
     <div class="profile-wrapper">
         <img src="Profile.JPG" alt="Yeonsu" class="profile-img">
