@@ -103,10 +103,18 @@ nav ul li a.active {
 
 header { padding: 60px 0 40px; text-align: center; z-index: 10; }
 .logo-wrapper { display: inline-flex; flex-direction: column; align-items: center; cursor: pointer; }
+
+/* 큰 제목 필기체 폰트 위아래 잘림 방지 및 스타일 최적화 */
 header h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 4rem; letter-spacing: 0em; font-weight: 400; margin: 0;
+    font-size: 4.5rem; 
+    line-height: 1.4;
+    padding: 10px 20px;
+    letter-spacing: 0em; 
+    font-weight: 400; 
+    margin: 0;
     -webkit-tap-highlight-color: transparent;
+    display: inline-block;
 }
 
 .container { 
@@ -136,23 +144,16 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 .social-links { margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--text-dim); }
 .copyright { font-size: 0.65rem; letter-spacing: 0.15em; color: var(--text-very-dim); text-transform: uppercase; }
 
-.profile-wrapper { display: flex; align-items: center; gap: 60px; max-width: 900px; margin: 0 auto; text-align: left; animation: fadeIn 2s ease; }
-.profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
-.profile-info h2 { font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--point-color); margin: 0 0 20px 0; }
-
-.profile-info p { 
-    font-size: 0.95rem; 
-    line-height: 2.1; 
-    color: var(--text-main); 
-    text-align: justify; 
-    margin: 0; 
-    letter-spacing: 0.04em;
-    
-    /* 단어가 끊겨도 양 끝 정렬을 일정하게 맞춤 */
-    word-break: break-all; 
-    text-wrap: pretty; 
+/* 텍스트 제거 후 단독 사진 중앙 배치를 위한 미니멀 래퍼 설정 */
+.profile-wrapper { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    width: 100%;
+    margin: 0 auto; 
+    animation: fadeIn 2s ease; 
 }
-.profile-info strong { color: var(--point-color); font-weight: 600; }
+.profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
 
 @media (max-width: 1150px) {
     header { padding: 40px 0 20px; }
@@ -161,8 +162,8 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     .container { flex-direction: column; min-height: auto; }
     #content-area { padding: 0; min-height: 500px; }
     .form-row { flex-direction: column; gap: 25px; }
-    .profile-wrapper { flex-direction: column; align-items: center; padding: 0 20px; }
-    .profile-info { width: 100%; max-width: 320px; }
+    .profile-wrapper { padding: 0 20px; }
+    .profile-img { width: 280px; } /* 모바일에서 화면 비율에 맞춰 소폭 조정 */
 }
 </style>
     
@@ -171,7 +172,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
 
     <header>
     <div class="logo-wrapper" onclick="updateGrid('PREVIEW')">
-        <h1>Dohwaz</h1>
+        <h1>Yeonsu</h1>
     </div>
 </header>
     
@@ -195,22 +196,17 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
             <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a>|
             <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
         </div>
-        <div class="copyright">© 2026 DOHWAZ. ALL RIGHTS RESERVED.</div>
+        <div class="copyright">© 2026 DUSTN. ALL RIGHTS RESERVED.</div>
     </footer>
 
     <script>
       const CONTENT_CONFIG = {
             'RECORDS': '<div class="album-notice"><br>GONG</div>',
             'COMING_SOON': '<div class="album-notice">COMING SOON</div>',
+         /* 메인 텍스트 요소를 완전히 비우고 사진만 정중앙에 배치 */
          'DEFAULT': `
     <div class="profile-wrapper">
         <img src="Profile.JPG" alt="Yeonsu" class="profile-img">
-        <div class="profile-info">
-            <h2>Yeonsu</h2>
-                <p>
-    Yeonsu captures <strong>internal landscapes</strong> through honest soundwaves. Rather than categorization, she focuses on the <strong>integrity of the theme</strong>—archiving the raw fragments of existence. Everything flows and resonates within a void called <strong>GONG</strong>. No boundaries, no fixed timelines. Just the continuous <strong>resonance</strong> of a soul.
-            </p>
-        </div>
     </div>
 `
         };
