@@ -24,14 +24,15 @@
     </script>
 
  <style>
+/* 1. 성숙한 사랑스러움을 담은 여름 쿨 팔레트로 교체 */
 :root {
-    --bg-color: #f2ede4; 
-    --text-main: #2d2a26; 
-    --text-dim: #7d756d;
-    --text-very-dim: #b8b1a9; 
-    --accent: #e5e0d8; 
-    --point-color: #8b3a2b; 
-    --dark-brown: #3d2b1f;  
+    --bg-color: #f7f6f8;       /* 새벽 안개 같은 물기 있는 미색 (쿨 톤) */
+    --text-main: #5a5e6b;      /* 먹먹한 미디엄 쿨 그레이 (성숙함) */
+    --text-dim: #9c9fad;       /* 힘을 뺀 연한 소프트 블루 그레이 */
+    --text-very-dim: #e6e8ef;  /* 경계선이 거의 보이지 않는 맑은 라벤더 실버 */
+    --accent: rgba(223, 203, 207, 0.2); /* 사진 뒤 그림자: 투명도를 준 연한 쿨 스킨 */
+    --point-color: #d2c3c7;    /* 모브 베이지 (성숙하지만 사랑스러운 살구 모브, 마냥 핑크X) */
+    --dark-brown: #6b666a;     /* 로고에 들어갈, 무겁지 않은 딥한 모브 그레이 */
 }
 
 body {
@@ -51,7 +52,6 @@ a, button, .logo-wrapper, .social-links a, nav ul li a, [onclick] {
     cursor: url('cursor.png?v=2026_final') 8 8, pointer !important;
 }
 
-/* 상단 타이틀에 Fleur De Leah 폰트를 강제 고정합니다 */
 header h1, .logo-wrapper h1 { 
     font-family: 'Fleur De Leah', cursive !important;
     color: var(--dark-brown) !important; 
@@ -64,6 +64,8 @@ header h1, .logo-wrapper h1 {
     -webkit-tap-highlight-color: transparent;
     display: inline-block;
     transition: none !important;
+    /* 2. 메인 로고에 은은한 물안개 번짐 효과(Halo) 추가 */
+    text-shadow: 0 0 15px rgba(184, 168, 172, 0.3), 0 0 5px rgba(255, 255, 255, 0.4);
 }
 
 nav ul li a { 
@@ -93,6 +95,7 @@ nav ul li a.active {
 }
 
 .submit-btn { 
+    /* 3. SUBMIT 버튼의 무거운 검은색을 딥 코코아 그레이로 변경 */
     background: var(--dark-brown); 
     color: var(--bg-color); 
     border: none; 
@@ -149,6 +152,7 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     margin: 0 auto; 
     animation: fadeIn 2s ease; 
 }
+/* 4. 사진 뒤 그림자 명도를 확 낮추어 투명도를 높임 (Softness) */
 .profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
 
 @media (max-width: 1150px) {
