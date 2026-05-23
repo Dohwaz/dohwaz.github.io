@@ -23,16 +23,16 @@
         (function() { emailjs.init("noI6vApUfz1edbWge"); })();
     </script>
 
- <style>
-/* 1. 성숙한 사랑스러움을 담은 여름 쿨 팔레트로 교체 */
+<style>
+/* 🎨 안개 낀 피아노 방, 물기 어린 무채색 무드의 여름 쿨 라이트 아티스트 팔레트 */
 :root {
-    --bg-color: #f7f6f8;       /* 새벽 안개 같은 물기 있는 미색 (쿨 톤) */
-    --text-main: #5a5e6b;      /* 먹먹한 미디엄 쿨 그레이 (성숙함) */
-    --text-dim: #9c9fad;       /* 힘을 뺀 연한 소프트 블루 그레이 */
-    --text-very-dim: #e6e8ef;  /* 경계선이 거의 보이지 않는 맑은 라벤더 실버 */
-    --accent: rgba(223, 203, 207, 0.2); /* 사진 뒤 그림자: 투명도를 준 연한 쿨 스킨 */
-    --point-color: #d2c3c7;    /* 모브 베이지 (성숙하지만 사랑스러운 살구 모브, 마냥 핑크X) */
-    --dark-brown: #6b666a;     /* 로고에 들어갈, 무겁지 않은 딥한 모브 그레이 */
+    --bg-color: #edecee;       /* 1. 안개가 낮게 깔린 듯한 모브 실버 그레이 배경 */
+    --text-main: #4a494d;      /* 2. 물기 어린 딥 쿨 그레이 (기존 브라운/버건디 완전 삭제) */
+    --text-dim: #8e8d93;       /* 3. 힘을 뺀 안개 속의 메뉴 글씨 색상 */
+    --text-very-dim: #d1d0d4;  /* 4. 보일 듯 말 듯 투명한 라인/카피라이트 색상 */
+    --accent: rgba(74, 73, 77, 0.08); /* 5. 사진 뒤 그림자: 연기가 번지는 듯한 투명한 흑백 음영 */
+    --point-color: #a39ca8;    /* 6. 모브 미스트 (성숙하고 차분한, 안개 어린 보랏빛 그레이) */
+    --dark-brown: #363538;     /* 7. 로고와 버튼: 가볍지 않은 무게감을 주는 챠콜 모브 그레이 */
 }
 
 body {
@@ -64,8 +64,8 @@ header h1, .logo-wrapper h1 {
     -webkit-tap-highlight-color: transparent;
     display: inline-block;
     transition: none !important;
-    /* 2. 메인 로고에 은은한 물안개 번짐 효과(Halo) 추가 */
-    text-shadow: 0 0 15px rgba(184, 168, 172, 0.3), 0 0 5px rgba(255, 255, 255, 0.4);
+    /* ✨ 로고 주변으로 서늘한 습기와 안개가 번진 듯한 text-shadow 레이어링 */
+    text-shadow: 0 0 20px rgba(163, 156, 168, 0.4), 0 0 4px rgba(255, 255, 255, 0.5);
 }
 
 nav ul li a { 
@@ -95,7 +95,6 @@ nav ul li a.active {
 }
 
 .submit-btn { 
-    /* 3. SUBMIT 버튼의 무거운 검은색을 딥 코코아 그레이로 변경 */
     background: var(--dark-brown); 
     color: var(--bg-color); 
     border: none; 
@@ -152,8 +151,13 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
     margin: 0 auto; 
     animation: fadeIn 2s ease; 
 }
-/* 4. 사진 뒤 그림자 명도를 확 낮추어 투명도를 높임 (Softness) */
-.profile-img { width: 320px; height: auto; box-shadow: 15px 15px 0px var(--accent); object-fit: cover; }
+/* 🌫 사진 뒤 딱딱한 실선 그래픽 느낌의 그림자를 걷어내고, 부드럽고 몽환적인 스머지 투명 블러 효과로 전면 수정 */
+.profile-img { 
+    width: 320px; 
+    height: auto; 
+    box-shadow: 0 20px 40px var(--accent), 0 5px 15px rgba(0,0,0,0.03); 
+    object-fit: cover; 
+}
 
 @media (max-width: 1150px) {
     header { padding: 40px 0 20px; }
@@ -250,8 +254,10 @@ footer { text-align: center; padding: 60px 20px 40px; margin-top: auto; }
                         <div class="form-group"><label>Type of Event</label><input type="text" name="type" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등"></div>
                         <div class="form-group"><label>Performance Duration</label><input type="text" name="duration" data-label="Performance Duration" placeholder="예상 길이(시간) / 협업 기간"></div>
                     </div>
-                    <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예상 범위"></div>
-                    <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex.특정 곡,테마)"></textarea></div>
+                    <div class="form-row">
+                        <div class="form-group" style="margin-bottom:25px;"><label>Budget Range</label><input type="text" name="budget" data-label="Budget Range" placeholder="예상 범위"></div>
+                        <div class="form-group" style="margin-bottom:25px;"><label>Special Requests</label><textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex.특정 곡,테마)"></textarea></div>
+                    </div>
                     <div class="form-group">
                         <label>Additional Details</label>
                         <textarea name="message" data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
