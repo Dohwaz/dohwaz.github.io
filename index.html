@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Dohwaz | Official</title>
 
 <meta name="naver-site-verification" content="40755a6a7b1880b3091867b98fc561f694b256d6"/>
@@ -52,18 +52,6 @@ min-height:100vh;
 user-select:none;
 cursor:url('cursor.png?v=2026_final') 8 8,auto!important;
 overflow-x:hidden;
-position:relative;
-}
-
-body::before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-opacity:.07;
-background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-mix-blend-mode:multiply;
-z-index:9999;
 }
 
 a,button,.logo-wrapper,.social-links a,nav ul li a,[onclick]{
@@ -236,6 +224,7 @@ color:var(--text-main);
 font-family:inherit;
 font-size:.85rem;
 outline:none;
+border-radius:0;
 }
 
 .form-group input:focus,
@@ -246,6 +235,18 @@ border-bottom-color:var(--dark-brown);
 .form-group textarea{
 min-height:60px;
 resize:vertical;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus{
+-webkit-box-shadow:0 0 0 1000px var(--bg-color) inset!important;
+-webkit-text-fill-color:var(--text-main)!important;
+transition:background-color 9999s ease-in-out 0s;
+font-family:inherit;
 }
 
 .submit-btn{
@@ -312,22 +313,7 @@ color:var(--text-very-dim);
 }
 
 .echo-actions{
-display:flex;
-justify-content:space-between;
-align-items:center;
 margin-top:14px;
-}
-
-.echo-like{
-font-size:.68rem;
-letter-spacing:.15em;
-color:var(--text-dim);
-cursor:pointer;
-transition:.2s;
-}
-
-.echo-like:hover{
-color:var(--point-color);
 }
 
 .echo-delete{
@@ -336,6 +322,7 @@ letter-spacing:.15em;
 color:var(--text-very-dim);
 cursor:pointer;
 transition:.2s;
+width:fit-content;
 }
 
 .echo-delete:hover{
@@ -493,13 +480,11 @@ width:280px;
 
 <nav>
 <ul id="menu-list">
-
 <li><a onclick="updateGrid('RECORDS')">RECORDS</a></li>
 <li><a onclick="updateGrid('MERCH')">MERCH</a></li>
 <li><a onclick="updateGrid('EVENTS')">EVENTS</a></li>
 <li><a onclick="updateGrid('ECHOES')">ECHOES</a></li>
 <li><a onclick="updateGrid('CONTACT')">CONTACT</a></li>
-
 </ul>
 </nav>
 
@@ -512,13 +497,9 @@ width:280px;
 <footer>
 
 <div class="social-links">
-
 <a href="https://soundcloud.com/dohwaz" target="_blank">SOUNDCLOUD</a> |
-
 <a href="https://www.youtube.com/@dohwaz" target="_blank">YOUTUBE</a> |
-
 <a href="https://www.instagram.com/dohwaz/" target="_blank">INSTAGRAM</a>
-
 </div>
 
 <div class="copyright">
@@ -811,9 +792,7 @@ message:input.value,
 
 date:formatted,
 
-password:password.value,
-
-likes:0
+password:password.value
 });
 
 renderEchoes();
@@ -845,12 +824,6 @@ ${entry.date}
 <div class="echo-actions">
 
 <div
-class="echo-like"
-onclick="likeEcho(${entry.id})">
-+ ${entry.likes}
-</div>
-
-<div
 class="echo-delete"
 onclick="deleteEcho(${entry.id})">
 DELETE
@@ -862,20 +835,6 @@ DELETE
 
 `
 ).join('');
-}
-
-function likeEcho(id){
-
-const target=
-echoes.find(
-entry=>entry.id===id
-);
-
-if(!target) return;
-
-target.likes+=1;
-
-renderEchoes();
 }
 
 function deleteEcho(id){
