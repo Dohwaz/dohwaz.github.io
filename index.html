@@ -789,13 +789,26 @@ btn.disabled=false;
 
 /* ECHOES */
 
-let echoes=[];
+let echoes=
+JSON.parse(
+localStorage.getItem('echoes-data')
+)||[];
+
+function saveEchoes(){
+
+localStorage.setItem(
+'echoes-data',
+JSON.stringify(echoes)
+);
+}
 
 function addEcho(){
 
-const input=document.getElementById('echo-input');
+const input=
+document.getElementById('echo-input');
 
-const password=document.getElementById('echo-password');
+const password=
+document.getElementById('echo-password');
 
 if(!input.value.trim()) return;
 
@@ -826,6 +839,8 @@ date:formatted,
 password:password.value
 });
 
+saveEchoes();
+
 renderEchoes();
 
 showNotice();
@@ -837,11 +852,13 @@ password.value='';
 
 function renderEchoes(){
 
-const list=document.getElementById('echoes-list');
+const list=
+document.getElementById('echoes-list');
 
 if(!list) return;
 
-list.innerHTML=echoes.map(
+list.innerHTML=
+echoes.map(
 entry=>`
 
 <div class="echo-entry">
@@ -872,7 +889,8 @@ DELETE
 
 function deleteEcho(id){
 
-const entered=prompt('password');
+const entered=
+prompt('password');
 
 if(!entered) return;
 
@@ -893,6 +911,8 @@ echoes.filter(
 entry=>entry.id!==id
 );
 
+saveEchoes();
+
 renderEchoes();
 
 }else{
@@ -905,6 +925,12 @@ function showNotice(){
 
 const notice=
 document.getElementById('echo-notice');
+
+if(!notice) return;
+
+notice.classList.remove('show');
+
+void notice.offsetWidth;
 
 notice.classList.add('show');
 
