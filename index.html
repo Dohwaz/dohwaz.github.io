@@ -274,7 +274,7 @@ width:100%;
 max-width:520px;
 display:flex;
 flex-direction:column;
-gap:26px;
+gap:34px;
 animation:fadeIn 1s ease;
 }
 
@@ -334,25 +334,12 @@ color:var(--point-color);
 .echo-form{
 display:flex;
 flex-direction:column;
-gap:22px;
-}
-
-.echo-input-group{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.echo-label{
-font-size:.68rem;
-letter-spacing:.14em;
-color:var(--text-very-dim);
-text-transform:uppercase;
+gap:16px;
 }
 
 .echo-form textarea{
 width:100%;
-height:48px;
+height:26px;
 resize:none;
 border:none;
 border-bottom:1px solid var(--text-very-dim);
@@ -362,34 +349,26 @@ font-family:inherit;
 font-size:.84rem;
 color:var(--text-main);
 padding:0 0 10px 0;
-line-height:1.7;
-overflow:hidden;
 }
 
 .echo-form textarea::placeholder{
-color:transparent;
+color:var(--text-very-dim);
+letter-spacing:.08em;
 }
 
 .echo-bottom{
 display:flex;
 justify-content:space-between;
-align-items:end;
+align-items:center;
 gap:20px;
 }
 
-.echo-password-group{
-flex:1;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
 .echo-bottom input{
-width:100%;
+flex:1;
 background:transparent;
 border:none;
 border-bottom:1px solid var(--text-very-dim);
-padding:0 0 10px 0;
+padding:10px 0;
 outline:none;
 font-size:.75rem;
 color:var(--text-main);
@@ -402,7 +381,7 @@ border:none;
 color:var(--dark-brown);
 letter-spacing:.24em;
 font-size:.7rem;
-padding:0 4px 10px 4px;
+padding:0;
 transition:.2s;
 }
 
@@ -435,7 +414,7 @@ backdrop-filter:blur(4px);
 opacity:1;
 transform:translate(-50%,-50%) scale(1);
 }
-
+  
 /* FOOTER */
 
 footer{
@@ -577,8 +556,6 @@ const CONTENT_CONFIG={
 
 <div class="echo-form">
 
-<div class="echo-input-group">
-
 <div class="echo-label">
 leave a trace...
 </div>
@@ -587,22 +564,13 @@ leave a trace...
 id="echo-input"
 ></textarea>
 
-</div>
-
 <div class="echo-bottom">
-
-<div class="echo-password-group">
-
-<div class="echo-label">
-password
-</div>
 
 <input
 type="password"
 id="echo-password"
+placeholder="password"
 />
-
-</div>
 
 <button onclick="addEcho()">
 POST
@@ -675,6 +643,8 @@ renderEchoes();
 
 }
 }
+
+/* CONTACT */
 
 function renderContactForm(container){
 
@@ -999,4 +969,3 @@ false
 
 </body>
 </html>
-```
