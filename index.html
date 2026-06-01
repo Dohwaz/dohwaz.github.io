@@ -348,7 +348,9 @@ outline:none;
 font-family:inherit;
 font-size:.84rem;
 color:var(--text-main);
-padding:0 0 10px 0;
+padding:0 0 2px 0;
+line-height:1.2;
+overflow:hidden;
 }
 
 .echo-form textarea::placeholder{
@@ -556,12 +558,9 @@ const CONTENT_CONFIG={
 
 <div class="echo-form">
 
-<div class="echo-label">
-leave a trace...
-</div>
-
 <textarea
 id="echo-input"
+placeholder="leave a trace..."
 ></textarea>
 
 <div class="echo-bottom">
