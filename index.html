@@ -389,6 +389,31 @@ transition:.2s;
 color:var(--point-color);
 }
 
+/* NOTICE */
+
+#echo-notice{
+position:fixed;
+bottom:40px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(247,243,235,.96);
+color:var(--dark-brown);
+padding:14px 24px;
+font-size:.72rem;
+letter-spacing:.18em;
+border:1px solid rgba(0,0,0,.06);
+opacity:0;
+pointer-events:none;
+transition:.5s;
+z-index:9999;
+backdrop-filter:blur(4px);
+}
+
+#echo-notice.show{
+opacity:1;
+bottom:52px;
+}
+
 /* FOOTER */
 
 footer{
@@ -509,6 +534,10 @@ width:280px;
 </div>
 
 </footer>
+
+<div id="echo-notice">
+✉ your trace remains
+</div>
 
 <script>
 
@@ -799,6 +828,8 @@ password:password.value
 
 renderEchoes();
 
+showNotice();
+
 input.value='';
 
 password.value='';
@@ -868,6 +899,20 @@ renderEchoes();
 
 alert('wrong password');
 }
+}
+
+function showNotice(){
+
+const notice=
+document.getElementById('echo-notice');
+
+notice.classList.add('show');
+
+setTimeout(()=>{
+
+notice.classList.remove('show');
+
+},2200);
 }
 
 window.addEventListener('load',()=>{
