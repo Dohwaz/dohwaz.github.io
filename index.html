@@ -305,15 +305,17 @@ color:var(--text-main);
 white-space:pre-wrap;
 }
 
+.echo-meta{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:14px;
+}
+
 .echo-date{
-margin-top:12px;
 font-size:.66rem;
 letter-spacing:.14em;
 color:var(--text-very-dim);
-}
-
-.echo-actions{
-margin-top:14px;
 }
 
 .echo-delete{
@@ -817,11 +819,11 @@ entry=>`
 ${entry.message}
 </div>
 
+<div class="echo-meta">
+
 <div class="echo-date">
 ${entry.date}
 </div>
-
-<div class="echo-actions">
 
 <div
 class="echo-delete"
