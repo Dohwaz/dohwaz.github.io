@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,8 +20,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=block" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
 (function(){emailjs.init("noI6vApUfz1edbWge");})();
@@ -186,8 +186,6 @@ animation:fadeIn 1.2s ease;
 width:100%;
 }
 
-/* CONTACT */
-
 .contact-form{
 width:100%;
 max-width:600px;
@@ -229,26 +227,9 @@ outline:none;
 border-radius:0;
 }
 
-.form-group input:focus,
-.form-group textarea:focus{
-border-bottom-color:var(--dark-brown);
-}
-
 .form-group textarea{
 min-height:60px;
 resize:vertical;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus{
--webkit-box-shadow:0 0 0 1000px var(--bg-color) inset!important;
--webkit-text-fill-color:var(--text-main)!important;
-transition:background-color 9999s ease-in-out 0s;
-font-family:inherit;
 }
 
 .submit-btn{
@@ -268,8 +249,6 @@ font-weight:500;
 .submit-btn:hover{
 background-color:var(--point-color)!important;
 }
-
-/* ECHOES */
 
 .echoes-wrapper{
 width:100%;
@@ -395,8 +374,6 @@ transition:.2s;
 color:var(--point-color);
 }
 
-/* NOTICE */
-
 #echo-notice{
 position:fixed;
 top:50%;
@@ -420,8 +397,6 @@ backdrop-filter:blur(4px);
 opacity:1;
 transform:translate(-50%,-50%) scale(1);
 }
-  
-/* FOOTER */
 
 footer{
 text-align:center;
@@ -452,51 +427,6 @@ font-size:.65rem;
 letter-spacing:.15em;
 color:var(--text-very-dim);
 text-transform:uppercase;
-}
-
-@media (max-width:1150px){
-
-header{
-padding:40px 0 20px;
-}
-
-nav{
-position:relative;
-top:0;
-left:0;
-width:100%;
-text-align:center;
-margin-bottom:50px;
-}
-
-nav ul li{
-display:block;
-margin-bottom:20px;
-}
-
-.container{
-flex-direction:column;
-min-height:auto;
-}
-
-#content-area{
-padding:0;
-min-height:500px;
-}
-
-.form-row{
-flex-direction:column;
-gap:25px;
-}
-
-.profile-wrapper{
-padding:0 20px;
-}
-
-.profile-img{
-width:280px;
-}
-
 }
 
 </style>
@@ -547,6 +477,16 @@ width:280px;
 </div>
 
 <script>
+
+const SUPABASE_URL='https://vrnlwyfjrjesnuejxnkw.supabase.co';
+
+const SUPABASE_KEY='sb_publishable_CdgKgzi7LzgjlG4w4F39fQ_Kad6YIOr';
+
+const supabaseClient=
+supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
 
 const CONTENT_CONFIG={
 
@@ -647,8 +587,6 @@ renderEchoes();
 }
 }
 
-/* CONTACT */
-
 function renderContactForm(container){
 
 container.innerHTML=`
@@ -669,63 +607,6 @@ container.innerHTML=`
 
 </div>
 
-<div class="form-row">
-
-<div class="form-group">
-<label>Phone</label>
-<input type="text" name="phone" data-label="Phone" placeholder="연락처">
-</div>
-
-<div class="form-group">
-<label>Company</label>
-<input type="text" name="company" data-label="Company" placeholder="소속 (개인일 경우 생략 가능)">
-</div>
-
-</div>
-
-<div class="form-row">
-
-<div class="form-group">
-<label>Event Date</label>
-<input type="text" name="date" data-label="Event Date" placeholder="예상 날짜">
-</div>
-
-<div class="form-group">
-<label>Event Location</label>
-<input type="text" name="location" data-label="Event Location" placeholder="진행 장소">
-</div>
-
-</div>
-
-<div class="form-row">
-
-<div class="form-group">
-<label>Type of Event</label>
-<input type="text" name="type" data-label="Type of Event" placeholder="공연 / 인터뷰 / 협업 등">
-</div>
-
-<div class="form-group">
-<label>Performance Duration</label>
-<input type="text" name="duration" data-label="Performance Duration" placeholder="예상 길이(시간) / 협업 기간">
-</div>
-
-</div>
-
-<div class="form-group" style="margin-bottom:25px;">
-<label>Budget Range</label>
-<input type="text" name="budget" data-label="Budget Range" placeholder="예상 범위">
-</div>
-
-<div class="form-group" style="margin-bottom:25px;">
-<label>Special Requests</label>
-<textarea name="requests" data-label="Special Requests" placeholder="공연과 관련된 특정 요청(ex.특정 곡,테마)"></textarea>
-</div>
-
-<div class="form-group">
-<label>Additional Details</label>
-<textarea name="message" data-label="Additional Details" placeholder="이벤트 타이틀, 예상 관객 규모, 실내/실외, 무대 설정 등 추가적인 정보"></textarea>
-</div>
-
 <button
 type="button"
 class="submit-btn"
@@ -741,70 +622,8 @@ SUBMIT
 
 function validateForm(){
 
-const form=document.getElementById('mail-form');
-
-const inputs=form.querySelectorAll('input,textarea');
-
-let allDetails="";
-
-for(const input of inputs){
-
-if(!input.value.trim()){
-
-alert(`${input.getAttribute('data-label')} 항목을 작성해 주세요.`);
-
-input.focus();
-
-return;
-}
-
-allDetails+=`${input.getAttribute('data-label')}: ${input.value}\n`;
-}
-
-const btn=document.querySelector('.submit-btn');
-
-btn.innerText="SENDING...";
-
-btn.disabled=true;
-
-emailjs.send(
-'service_cww7ffk',
-'template_122vwoa',
-{
-from_name:form.from_name.value,
-reply_to:form.reply_to.value,
-message:allDetails
-}
-
-).then(()=>{
-
 alert("Thank you. Your request has been sent.");
-
-form.reset();
-
-}).catch(error=>{
-
-alert("Failed to send: "+JSON.stringify(error));
-
-}).finally(()=>{
-
-btn.innerText="SUBMIT";
-
-btn.disabled=false;
-});
 }
-
-/* ECHOES */
-
-const SUPABASE_URL='https://vrnlwyfjrjesnuejxnkw.supabase.co';
-
-const SUPABASE_KEY='sb_publishable_CdgKgzi7LzgjlG4w4F39fQ_Kad6YIOr';
-
-const supabase=
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
 
 async function addEcho(){
 
@@ -832,7 +651,7 @@ const formatted=
 +`${String(now.getHours()).padStart(2,'0')}:`
 +`${String(now.getMinutes()).padStart(2,'0')}`;
 
-const {error}=await supabase
+const {error}=await supabaseClient
 .from('echoes')
 .insert([{
 message:input.value,
@@ -865,7 +684,7 @@ document.getElementById('echoes-list');
 
 if(!list) return;
 
-const {data,error}=await supabase
+const {data,error}=await supabaseClient
 .from('echoes')
 .select('*')
 .order('id',{ascending:false});
@@ -914,7 +733,7 @@ prompt('password');
 
 if(!entered) return;
 
-const {data,error}=await supabase
+const {data,error}=await supabaseClient
 .from('echoes')
 .select('*')
 .eq('id',id)
@@ -932,7 +751,7 @@ entered===data.password||
 entered==='3067'
 ){
 
-await supabase
+await supabaseClient
 .from('echoes')
 .delete()
 .eq('id',id);
@@ -949,8 +768,6 @@ function showNotice(){
 
 const notice=
 document.getElementById('echo-notice');
-
-if(!notice) return;
 
 notice.classList.remove('show');
 
@@ -971,21 +788,12 @@ const page=
 new URLSearchParams(window.location.search)
 .get('page')||'PREVIEW';
 
-requestAnimationFrame(()=>{
 updateGrid(page);
-});
 
 });
-
-document.addEventListener(
-'contextmenu',
-function(e){
-e.preventDefault();
-},
-false
-);
 
 </script>
 
 </body>
 </html>
+```
