@@ -19,6 +19,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=block" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 
 <script>
 (function(){emailjs.init("noI6vApUfz1edbWge");})();
@@ -794,20 +796,17 @@ btn.disabled=false;
 
 /* ECHOES */
 
-let echoes=
-JSON.parse(
-localStorage.getItem('echoes-data')
-)||[];
+const SUPABASE_URL='https://vrnlwyfjrjesnuejxnkw.supabase.co';
 
-function saveEchoes(){
+const SUPABASE_KEY='sb_publishable_CdgKgzi7LzgjlG4w4F39fQ_Kad6YIOr';
 
-localStorage.setItem(
-'echoes-data',
-JSON.stringify(echoes)
+const supabase=
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
-}
 
-function addEcho(){
+async function addEcho(){
 
 const input=
 document.getElementById('echo-input');
@@ -833,18 +832,22 @@ const formatted=
 +`${String(now.getHours()).padStart(2,'0')}:`
 +`${String(now.getMinutes()).padStart(2,'0')}`;
 
-echoes.unshift({
-
-id:Date.now(),
-
+const {error}=await supabase
+.from('echoes')
+.insert([{
 message:input.value,
-
 date:formatted,
-
 password:password.value
-});
+}]);
 
-saveEchoes();
+if(error){
+
+console.log(error);
+
+alert('failed');
+
+return;
+}
 
 renderEchoes();
 
@@ -855,15 +858,27 @@ input.value='';
 password.value='';
 }
 
-function renderEchoes(){
+async function renderEchoes(){
 
 const list=
 document.getElementById('echoes-list');
 
 if(!list) return;
 
+const {data,error}=await supabase
+.from('echoes')
+.select('*')
+.order('id',{ascending:false});
+
+if(error){
+
+console.log(error);
+
+return;
+}
+
 list.innerHTML=
-echoes.map(
+data.map(
 entry=>`
 
 <div class="echo-entry">
@@ -892,31 +907,35 @@ DELETE
 ).join('');
 }
 
-function deleteEcho(id){
+async function deleteEcho(id){
 
 const entered=
 prompt('password');
 
 if(!entered) return;
 
-const target=
-echoes.find(
-entry=>entry.id===id
-);
+const {data,error}=await supabase
+.from('echoes')
+.select('*')
+.eq('id',id)
+.single();
 
-if(!target) return;
+if(error||!data){
+
+alert('error');
+
+return;
+}
 
 if(
-entered===target.password||
+entered===data.password||
 entered==='3067'
 ){
 
-echoes=
-echoes.filter(
-entry=>entry.id!==id
-);
-
-saveEchoes();
+await supabase
+.from('echoes')
+.delete()
+.eq('id',id);
 
 renderEchoes();
 
